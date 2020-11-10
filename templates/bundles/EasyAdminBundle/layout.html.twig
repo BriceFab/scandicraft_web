@@ -1,0 +1,17 @@
+{% extends '@!EasyAdmin/layout.html.twig' %}
+
+{% block head_javascript %}
+    {{ parent() }}
+
+    <script type="application/javascript">
+        jQuery(($) => {
+            // Met par défaut en mode full width
+            if (localStorage.getItem("ea/content/width") === null) {
+                localStorage.setItem("ea/content/width", "full");
+                const body_element = $('body');
+                body_element.removeClass("ea-content-width-normal");
+                body_element.addClass("ea-content-width-full");
+            }
+        })
+    </script>
+{% endblock head_javascript %}
