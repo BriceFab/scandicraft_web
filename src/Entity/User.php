@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\UserRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -169,12 +170,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getLastLogin(): ?\DateTimeInterface
+    public function getLastLogin(): ?DateTimeInterface
     {
         return $this->last_login;
     }
 
-    public function setLastLogin(?\DateTimeInterface $last_login): self
+    public function setLastLogin(?DateTimeInterface $last_login): self
     {
         $this->last_login = $last_login;
 
@@ -204,4 +205,10 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
 }
