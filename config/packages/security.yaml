@@ -41,8 +41,10 @@ security:
     ROLE_MODERATEUR: [ ROLE_MANAGEUR ]
     ROLE_ADMIN: [ ROLE_MODERATEUR ]
 
-  # Easy way to control access for large sections of your site
-  # Note: Only the *first* access control that matches will be used
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
   access_control:
-  # - { path: ^/admin, roles: ROLE_ADMIN }
-  # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/connexion$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: "^/%ADMIN_PATH%", roles: ROLE_PANEL_ADMIN }
+    - { path: ^/profile, roles: ROLE_USER }

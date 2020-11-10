@@ -23,7 +23,7 @@ class UserFixtures extends Fixture
         $user->setUsername('BriceFab');
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
-            'c196675b713d641521be98e0d5623867'
+            'password'
         ));
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);

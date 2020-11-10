@@ -13,6 +13,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/%ADMIN_PATH%")
+ * Class DashboardController
+ * @package App\Controller\Admin
+ */
 class DashboardController extends AbstractDashboardController
 {
     private $siteName;
@@ -23,7 +28,7 @@ class DashboardController extends AbstractDashboardController
     }
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route(name="admin")
      */
     public function index(): Response
     {
