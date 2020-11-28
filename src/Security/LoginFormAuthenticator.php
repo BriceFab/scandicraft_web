@@ -73,7 +73,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $this->entityManager->getRepository(User::class)->findUser($login, $login);
 
         if (!$user) {
-            throw new CustomUserMessageAuthenticationException('Username could not be found.');
+            throw new CustomUserMessageAuthenticationException('Email or username could not be found');
+        }
+
+        if (!$user->getHasConfirmEmail()) {
+            throw new CustomUserMessageAuthenticationException('Account must be confirmed');
         }
 
         return $user;

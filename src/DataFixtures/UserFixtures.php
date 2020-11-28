@@ -26,6 +26,7 @@ class UserFixtures extends Fixture
             'password'
         ));
         $user->setRoles(['ROLE_ADMIN']);
+        $user->setHasConfirmEmail(true);
         $manager->persist($user);
 
         $manager->flush();
