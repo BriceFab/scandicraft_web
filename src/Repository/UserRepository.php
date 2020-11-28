@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -66,6 +68,50 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             return $user;
         } catch (NonUniqueResultException $e) {
             return null;
+        }
+    }
+
+    public function countUsers()
+    {
+        $qb = $this->createQueryBuilder('u');
+        try {
+            return $qb
+                ->select('count(u.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (NoResultException|NonUniqueResultException $e) {
+            return 0;
+        }
+    }
+
+    public function countUsersRegisterThisMonth($year = null, $month = null)
+    {
+        if (is_null($year) && is_null($month)) {
+            $now = new DateTime('now');
+            $month = $now->format('n');
+            $year = $now->format('Y');
+        }
+
+        $qb = $this->createQueryBuilder('u');
+
+        $query = $qb
+            ->select($qb->expr()->count('u'))
+            ->where('YEAR(u.createdAt) = :year')
+            ->andWhere('MONTH(u.createdAt) = :month')
+            ->setParameters([
+                'year' => $year,
+                'month' => $month,
+            ])
+            ->getQuery();
+
+        try {
+            $result = $query->getOneOrNullResult();
+            if (is_array($result) && isset($result[1])) {
+                return $result[1];
+            }
+            return $result;
+        } catch (NonUniqueResultException $e) {
+            return -1;
         }
     }
 
