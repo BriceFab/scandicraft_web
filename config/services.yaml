@@ -5,6 +5,27 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     ADMIN_PATH: "%env(ADMIN_PATH)%"
+    mail.sender: "scandicraft.minecraft@gmail.com"
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    forum_images_url: '/uploads/forum/images/'
+    forum_images_directory: '%kernel.project_dir%/public/uploads/forum/images'
+    path.spoil.upload_images: /uploads/spoils/images
+    VOTE_SERVER_PRIVE_KEY: '%env(VOTE_SERVER_PRIVE_KEY)%'
+    APP_ENV: '%env(APP_ENV)%'
+    VOTE_DEV_TEST_IP: '%env(VOTE_DEV_TEST_IP)%'
+    skins_directory: '%kernel.project_dir%/public/uploads/skins'
+    capes_directory: '%kernel.project_dir%/public/uploads/capes'
+    path_upload_attachment: /uploads/attachments
+    PAYPAL_CLIENT_ID: '%env(PAYPAL_CLIENT_ID)%'
+    PAYPAL_SECRET_ID: '%env(PAYPAL_SECRET_ID)%'
+    DEDIPASS_PUBLIC_KEY: '%env(DEDIPASS_PUBLIC_KEY)%'
+    DEDIPASS_PRIVATE_KEY: '%env(DEDIPASS_PRIVATE_KEY)%'
+    rcon_timeout: '%env(rcon_timeout)%'
+    rcon_faction_host: '%env(rcon_faction_host)%'
+    rcon_faction_port: '%env(rcon_faction_port)%'
+    rcon_faction_password: '%env(rcon_faction_password)%'
+    STRIPE_SECRET_KEY: '%env(STRIPE_SECRET_KEY)%'
+    STRIPE_PUBLIC_KEY: '%env(STRIPE_PUBLIC_KEY)%'
 
 services:
     # default configuration for services in *this* file
