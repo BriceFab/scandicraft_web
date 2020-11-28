@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-class ParamKey
+class EnumParamKey
 {
 
     const SITE_NAME = 'param.site.name';

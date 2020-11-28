@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\PaymentOffersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PaymentOffers
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -41,11 +44,6 @@ class PaymentOffers
      * @ORM\Column(type="integer")
      */
     private $credit_receive;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
@@ -113,18 +111,6 @@ class PaymentOffers
     public function setCreditReceive(int $credit_receive): self
     {
         $this->credit_receive = $credit_receive;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

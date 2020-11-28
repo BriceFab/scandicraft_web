@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ForumDiscussion
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -37,11 +40,6 @@ class ForumDiscussion
      * @ORM\Column(type="boolean", nullable=false, options={"default": false})
      */
     private $archive;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="forumDiscussions")
@@ -130,18 +128,6 @@ class ForumDiscussion
     public function setArchive(?bool $archive): self
     {
         $this->archive = $archive;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

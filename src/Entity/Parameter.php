@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\ParameterRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Parameter
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

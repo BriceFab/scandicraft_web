@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Faq
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

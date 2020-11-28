@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use DateTime;
+use App\Entity\Traits\UpdateCreateTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * 
+ *
  * @ORM\Entity(repositoryClass="App\Repository\ForumCategoryRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="entity_type", type="string")
@@ -16,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ForumCategory
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -40,11 +42,6 @@ class ForumCategory
     protected $createdBy;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $createdAt;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     protected $active;
@@ -62,7 +59,6 @@ class ForumCategory
     public function __construct()
     {
         $this->forumSubCategories = new ArrayCollection();
-        $this->setCreatedAt(new DateTime('now'));
     }
 
     public function getId(): ?int
@@ -102,18 +98,6 @@ class ForumCategory
     public function setCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

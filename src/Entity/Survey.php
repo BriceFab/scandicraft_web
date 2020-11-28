@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Survey
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

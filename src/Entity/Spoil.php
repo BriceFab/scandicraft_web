@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,17 +16,14 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Spoil
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
@@ -76,7 +74,6 @@ class Spoil
     public function __construct()
     {
         $this->spoilShares = new ArrayCollection();
-        $this->setCreatedAt(new DateTime('now'));
         $this->images = new ArrayCollection();
     }
 
@@ -101,18 +98,6 @@ class Spoil
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getCreatedBy(): ?User

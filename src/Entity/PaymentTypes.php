@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\PaymentTypesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,6 +14,8 @@ use Symfony\Component\Serializer\Annotation as Serializer;
  */
 class PaymentTypes
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -40,12 +43,6 @@ class PaymentTypes
      * @ORM\Column(type="string", length=255)
      */
     private $dynamic_key;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @Serializer\Ignore()
-     */
-    private $createdAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
@@ -113,18 +110,6 @@ class PaymentTypes
     public function setDynamicKey(string $dynamic_key): self
     {
         $this->dynamic_key = $dynamic_key;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

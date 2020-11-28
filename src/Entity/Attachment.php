@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\AttachmentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -13,6 +14,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Attachment
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -24,11 +27,6 @@ class Attachment
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="attachments")
      */
     private $createdBy;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     /**
      * @Vich\UploadableField(mapping="attachment_path", fileNameProperty="url")
@@ -60,23 +58,6 @@ class Attachment
         $this->createdBy = $createdBy;
 
         return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function __construct()
-    {
-        $this->setCreatedAt(new \DateTime());
     }
 
     public function __toString()

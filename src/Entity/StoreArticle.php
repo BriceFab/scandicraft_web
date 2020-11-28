@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\StoreArticleRepository;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StoreArticle
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -61,11 +65,6 @@ class StoreArticle
     private $attachments;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\ManyToOne(targetEntity=StoreCategory::class, inversedBy="storeArticles")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -74,7 +73,6 @@ class StoreArticle
     public function __construct()
     {
         $this->attachments = new ArrayCollection();
-        $this->setCreatedAt(new DateTime('now'));
     }
 
     public function getId(): ?int
@@ -130,12 +128,12 @@ class StoreArticle
         return $this;
     }
 
-    public function getUntilDate(): ?\DateTimeInterface
+    public function getUntilDate(): ?DateTimeInterface
     {
         return $this->untilDate;
     }
 
-    public function setUntilDate(?\DateTimeInterface $untilDate): self
+    public function setUntilDate(?DateTimeInterface $untilDate): self
     {
         $this->untilDate = $untilDate;
 
@@ -188,18 +186,6 @@ class StoreArticle
         if ($this->attachments->contains($attachment)) {
             $this->attachments->removeElement($attachment);
         }
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

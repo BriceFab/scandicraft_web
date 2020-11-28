@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SpoilShare
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -100,7 +103,7 @@ class SpoilShare
 
     public function __toString()
     {
-        return $this->getSocial()->getName() . ' - ' . $this->getUser()->getUsername();        
+        return $this->getSocial()->getName() . ' - ' . $this->getUser()->getUsername();
     }
 
 }

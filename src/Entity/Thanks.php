@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,6 +13,8 @@ use DateTime;
  */
 class Thanks
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -37,11 +40,6 @@ class Thanks
     private $presentation;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\UserSocialmedia", mappedBy="thanks", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $social_media;
@@ -58,7 +56,6 @@ class Thanks
 
     public function __construct()
     {
-        $this->setCreatedAt(new DateTime('now'));
         $this->social_media = new ArrayCollection();
     }
 
@@ -99,18 +96,6 @@ class Thanks
     public function setPresentation(?string $presentation): self
     {
         $this->presentation = $presentation;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\UserVoteRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserVote
 {
+    use UpdateCreateTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -21,11 +24,6 @@ class UserVote
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userVotes")
      */
     private $user;
-
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -56,18 +54,6 @@ class UserVote
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(?\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

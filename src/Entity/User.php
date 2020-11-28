@@ -53,11 +53,6 @@ class User implements UserInterface
     private $hasConfirmEmail;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $last_login;
@@ -252,18 +247,6 @@ class User implements UserInterface
     public function setHasConfirmEmail(bool $hasConfirmEmail): self
     {
         $this->hasConfirmEmail = $hasConfirmEmail;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

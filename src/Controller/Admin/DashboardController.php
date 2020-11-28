@@ -2,11 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Classes\ParamKey;
+use App\Classes\EnumParamKey;
 use App\Controller\Admin\Crud\ParameterCrudController;
 use App\Controller\Admin\Crud\UserCrudController;
-use App\Entity\Parameter;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Security\ParameterService;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -20,11 +19,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DashboardController extends AbstractDashboardController
 {
-    private $siteName;
+    private $parameterService;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(ParameterService $parameterService)
     {
-        $this->siteName = $em->getRepository(Parameter::class)->findActiveParam(ParamKey::SITE_NAME);
+        $this->parameterService = $parameterService;
     }
 
     /**
@@ -38,7 +37,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle($this->siteName ?? 'Site');
+            ->setTitle($this->parameterService->getDatabaseParam(EnumParamKey::SITE_NAME));
     }
 
     public function configureMenuItems(): iterable
