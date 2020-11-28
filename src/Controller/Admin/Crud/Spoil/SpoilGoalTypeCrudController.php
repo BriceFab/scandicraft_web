@@ -1,43 +1,40 @@
 <?php
 
-namespace App\Controller\Admin\Crud;
+namespace App\Controller\Admin\Crud\Spoil;
 
-use App\Entity\UserIp;
+use App\Entity\ForumSubCategory;
+use App\Entity\SpoilGoalType;
+use App\Entity\Survey;
+use App\Entity\SurveyAnswers;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserIpCrudController extends AbstractCrudController
+class SpoilGoalTypeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return UserIp::class;
+        return SpoilGoalType::class;
     }
 
     public function configureCrud(Crud $crud): Crud
     {
         return parent::configureCrud($crud)
-            ->setEntityLabelInPlural('Ips');
+            ->setEntityLabelInSingular('Réponse')
+            ->setEntityLabelInPlural('Réponses');
     }
 
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)
-            ->remove(Crud::PAGE_INDEX, Action::NEW)
-            ->remove(Crud::PAGE_INDEX, Action::EDIT)
-            ->remove(Crud::PAGE_INDEX, Action::DELETE);
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->remove(Crud::PAGE_INDEX, Action::NEW);
     }
 
     public function configureFields(string $pageName): iterable
     {
-        return [
-            TextField::new('ip'),
-            AssociationField::new('user'),
-            DateTimeField::new('login_at', 'depuis le'),
-        ];
+        yield TextField::new('name');
     }
 }

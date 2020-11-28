@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\EnableTrait;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\StoreArticleRepository;
 use DateTime;
@@ -16,6 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 class StoreArticle
 {
     use UpdateCreateTrait;
+    use EnableTrait;
 
     /**
      * @ORM\Id
@@ -33,11 +35,6 @@ class StoreArticle
      * @ORM\Column(type="integer", nullable=true)
      */
     private $duration;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $enable;
 
     /**
      * @ORM\Column(type="integer")
@@ -100,18 +97,6 @@ class StoreArticle
     public function setDuration(?int $duration): self
     {
         $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getEnable(): ?bool
-    {
-        return $this->enable;
-    }
-
-    public function setEnable(bool $enable): self
-    {
-        $this->enable = $enable;
 
         return $this;
     }

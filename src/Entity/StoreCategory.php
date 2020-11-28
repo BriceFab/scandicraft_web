@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\EnableTrait;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\StoreCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class StoreCategory
 {
     use UpdateCreateTrait;
+    use EnableTrait;
 
     /**
      * @ORM\Id
@@ -26,11 +28,6 @@ class StoreCategory
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $enable;
 
     /**
      * @ORM\OneToMany(targetEntity=StoreArticle::class, mappedBy="category")
@@ -55,18 +52,6 @@ class StoreCategory
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getEnable(): ?bool
-    {
-        return $this->enable;
-    }
-
-    public function setEnable(bool $enable): self
-    {
-        $this->enable = $enable;
 
         return $this;
     }

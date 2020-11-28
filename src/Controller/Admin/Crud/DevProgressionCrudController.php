@@ -5,6 +5,8 @@ namespace App\Controller\Admin\Crud;
 use App\Entity\DevProgression;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class DevProgressionCrudController extends AbstractCrudController
@@ -25,6 +27,8 @@ class DevProgressionCrudController extends AbstractCrudController
     {
         return [
             TextField::new('nom'),
+            IntegerField::new('pourcentage'),
+            BooleanField::new('under_maintenance'),
         ];
     }
 }
