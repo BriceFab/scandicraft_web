@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\ForumDiscussionStatus;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ForumDiscussionStatusFixtures extends Fixture
+class ForumDiscussionStatusFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -45,6 +46,6 @@ class ForumDiscussionStatusFixtures extends Fixture
 
     public static function getGroups(): array
     {
-        return ['base'];
+        return ['base', 'form_discussion'];
     }
 }

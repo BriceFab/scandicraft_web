@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use App\Classes\EnumParamKey;
 use App\Entity\Parameter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ParameterFixtures extends Fixture
+class ParameterFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -22,6 +23,6 @@ class ParameterFixtures extends Fixture
 
     public static function getGroups(): array
     {
-        return ['base'];
+        return ['base', 'param'];
     }
 }

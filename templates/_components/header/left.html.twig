@@ -1,0 +1,22 @@
+<ul class="navbar-nav">
+    <li class="nav-item">
+        {% if hasMaintenance() == true %}
+            <a class="nav-link" href="{{ path('maintenances') }}">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                En maintenance
+            </a>
+        {% else %}
+            <a class="nav-link" href="{{ path('jouer') }}">
+                <i class="fas fa-user"></i>
+                {% set onlineUsers = user_service.countOnlineUsers() %}
+                {{ onlineUsers }} {{ onlineUsers > 0 ? 'connectés' : 'connecté' }}
+            </a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ app.user ? path('app_register') : path('compte') }}">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            {{ user_service.countRegisterUsers() }} inscrits
+        </a>
+    </li>
+</ul>

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\UserVote;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -32,7 +33,7 @@ class UserVoteRepository extends ServiceEntityRepository
         return $qb
             ->addSelect($qb->expr()->count('v.user') . 'AS nbr_votes')
             ->innerJoin('v.user', 'user')
-            ->setParameter('act_month', (new \DateTime('now'))->format("m"))
+            ->setParameter('act_month', (new DateTime('now'))->format("m"))
             ->where('substring(v.createdAt, 6, 2) = :act_month')
             ->groupBy('v.user')
             ->orderBy('nbr_votes', 'DESC')
@@ -52,7 +53,7 @@ class UserVoteRepository extends ServiceEntityRepository
 
         return $qb
             ->innerJoin('v.user', 'user')
-            ->setParameter('act_month', (new \DateTime('now'))->format("m"))
+            ->setParameter('act_month', (new DateTime('now'))->format("m"))
             ->setParameter('user', $user)
             ->where('substring(v.createdAt, 6, 2) = :act_month')
             ->andWhere('v.user = :user')
