@@ -20,6 +20,13 @@ class ParameterFixtures extends Fixture implements FixtureGroupInterface
         $param->setDescription("Nom du site internet");
         $manager->persist($param);
 
+        $param = new Parameter();
+        $param->setParamKey(EnumParamKey::SITE_LOGO);
+        $param->setParamType(EnumParamType::IMAGE);
+        $param->setValue("null");
+        $param->setDescription("Logo du site");
+        $manager->persist($param);
+
         $manager->flush();
     }
 

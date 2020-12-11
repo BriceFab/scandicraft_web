@@ -1,0 +1,5 @@
+{% set logo_path = getParameter('param.site.logo') %}
+
+{% if logo_path is defined and logo_path is not null and logo_path != "null" %}
+    <img src="{{ asset(logo_path) }}" class="rounded mx-auto d-block main-logo" alt="Logo">
+{% endif %}

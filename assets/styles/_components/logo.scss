@@ -1,0 +1,31 @@
+.main-menu-logo {
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+
+  .main-logo {
+    $main_logo_width: 300px;
+
+    position: absolute;
+    width: $main_logo_width;
+    height: auto;
+    left: -$main_logo_width / 2;
+    top: -$main_logo_width / 4.5;
+  }
+}
+
+.main-logo {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.main-logo:hover {
+  $scale: 1.2;
+  $degree: 1deg;
+  $duration: .2s;
+
+  -webkit-transform: rotate($degree) scale($scale);
+  transform: rotate($degree) scale($scale);
+  -webkit-transition: $duration ease-in-out;
+  transition: $duration ease-in-out;
+}
