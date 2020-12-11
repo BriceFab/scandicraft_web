@@ -20,5 +20,7 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "dependencies": {}
+    "dependencies": {
+        "toastr": "^2.1.4"
+    }
 }

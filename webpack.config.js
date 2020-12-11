@@ -18,6 +18,7 @@ Encore
      * ENTRY CONFIG
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('toast', './assets/js/toast/index.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

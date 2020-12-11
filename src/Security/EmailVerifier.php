@@ -55,7 +55,7 @@ class EmailVerifier
      */
     public function handleEmailConfirmation(Request $request, UserInterface $user): void
     {
-        if ($user instanceof User) {
+        if ($user instanceof User && !$user->getHasConfirmEmail()) {
             $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
 
             $user->setHasConfirmEmail(true);
