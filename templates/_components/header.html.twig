@@ -19,7 +19,7 @@
                             {% endif %}
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ path('app_register') }}">
                                 <i class="fa fa-users" aria-hidden="true"></i>
                                 {{ user_service.countRegisterUsers() }} inscrits
                             </a>

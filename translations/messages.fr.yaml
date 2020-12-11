@@ -1,3 +1,4 @@
+#Admin
 Username: Pseudonyme
 Email: 'Adresse e-mail'
 Created At: 'Créer le'
@@ -24,3 +25,5 @@ User: Joueur
 UserIp: 'IP du joueur'
 Categories: Categories
 Forum: Forum
+#User
+notif.confirm.email: "Veuillez confirmer votre adresse email ! (Cliquez sur le lien depuis l'email reçu à {email}). Pensez à regarder le dossier <b>SPAM</b>."

@@ -8,9 +8,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-class SecurityController extends AbstractController
+class LoginController extends AbstractController
 {
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/login", name="app_login")
      * @param AuthenticationUtils $authenticationUtils
@@ -29,10 +37,10 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         if ($error && $error->getMessageKey()) {
-            $this->addFlash('error', $this->get('translator')->trans($error->getMessageKey(), [], 'security'));
+            $this->addFlash('error', $this->translator->trans($error->getMessageKey(), [], 'security'));
         }
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('pages/user/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     /**
