@@ -1,5 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
-        # Services
+        #Variables
+        APP_ENV: "%APP_ENV%"
+        isDevMode: "%isDevMode%"
+        #Services
         user_service: "@user_service"

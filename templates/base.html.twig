@@ -10,8 +10,10 @@
         {% endblock %}
 
         {% block head_javascripts %}
-            <!-- Google ads -->
-            <script data-ad-client="ca-pub-1457190527508329" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            {% if not isDevMode %}
+                <!-- Google ads -->
+                <script data-ad-client="ca-pub-1457190527508329" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            {% endif %}
         {% endblock %}
 
     </head>
@@ -24,15 +26,17 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
 
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65579824-1"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
+            {% if not isDevMode %}
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65579824-1"></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
 
-                gtag('config', 'UA-65579824-1');
-            </script>
+                    gtag('config', 'UA-65579824-1');
+                </script>
+            {% endif %}
         {% endblock %}
 
     </body>

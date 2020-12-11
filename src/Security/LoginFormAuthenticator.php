@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -70,7 +71,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         }
 
         $login = $credentials['login'];
-        $user = $this->entityManager->getRepository(User::class)->findUser($login, $login);
+
+        /** @var UserRepository $repo */
+        $repo = $this->entityManager->getRepository(User::class);
+        $user = $repo->findUser($login, $login);
 
         if (!$user) {
             throw new CustomUserMessageAuthenticationException('Email or username could not be found');
@@ -104,8 +108,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new Exception('TODO: provide a valid redirect inside ' . __FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('accueil'));
     }
 
     protected function getLoginUrl()

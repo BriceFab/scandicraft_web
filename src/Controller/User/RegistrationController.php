@@ -5,7 +5,9 @@ namespace App\Controller\User;
 use App\Classes\EnumFlash;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
+use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -80,14 +82,25 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/inscription/confirmation", name="app_verify_email")
      * @param Request $request
+     * @param UserRepository $userRepository
      * @return Response
+     * @throws Exception
      */
-    public function verifyUserEmail(Request $request): Response
+    public function verifyUserEmail(Request $request, UserRepository $userRepository): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        if (!$request->query->has('username')) {
+            throw new Exception("bad token");
+        }
+
+        $user = $userRepository->findOneBy(['username' => $request->query->get('username')]);
+        if (!$user) {
+            throw new Exception("bad token");
+        }
 
         try {
-            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+            $this->emailVerifier->handleEmailConfirmation($request, $user);
+
+            $this->addFlash(EnumFlash::SUCCESS, 'Votre email a été vérifiée avec succès. Vous pouvez vous connecter !');
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
