@@ -13,6 +13,16 @@ class AccueilController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('accueil/index.html.twig');
+        return $this->render('pages/accueil/index.html.twig');
+    }
+
+    /**
+     * @Route("/jouer", name="jouer")
+     * @Route("/play")
+     * @Route("/join")
+     */
+    public function jouer()
+    {
+        return $this->render('pages/jouer/index.html.twig');
     }
 }

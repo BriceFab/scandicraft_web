@@ -57,3 +57,6 @@ services:
     App\EventSubscriber\EntitiesSubscriber:
         tags:
             - { name: 'doctrine.event_subscriber' }
+
+    user_service:
+        class: App\Service\UserService

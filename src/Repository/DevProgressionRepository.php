@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\DevProgression;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method DevProgression|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,43 +19,20 @@ class DevProgressionRepository extends ServiceEntityRepository
         parent::__construct($registry, DevProgression::class);
     }
 
-    public function countMaintenances()
+    public function listMaintenances()
     {
         $qb = $this->createQueryBuilder('m');
+
         return $qb
-            ->select('count(m.id)')
-            ->andWhere('m.under_maintenance = :isUnderMaintenance')
+            ->where('m.under_maintenance = :isUnderMaintenance')
             ->setParameter('isUnderMaintenance', true)
+            ->orderBy('m.pourcentage', 'DESC')
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getResult();
     }
 
-    // /**
-    //  * @return DevProgression[] Returns an array of DevProgression objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function countMaintenances()
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return count($this->listMaintenances());
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?DevProgression
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

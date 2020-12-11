@@ -3,9 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+
+        {% block head_javascripts %}
+            <!-- Google ads -->
+            <script data-ad-client="ca-pub-1457190527508329" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        {% endblock %}
+
     </head>
     <body>
 
@@ -15,6 +23,17 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65579824-1"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-65579824-1');
+            </script>
         {% endblock %}
+
     </body>
 </html>
