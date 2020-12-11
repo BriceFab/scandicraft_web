@@ -98,16 +98,18 @@ class RegistrationController extends AbstractController
         }
 
         try {
-            $this->emailVerifier->handleEmailConfirmation($request, $user);
+            $hasVerified = $this->emailVerifier->handleEmailConfirmation($request, $user);
 
-            $this->addFlash(EnumFlash::SUCCESS, 'Votre email a été vérifiée avec succès. Vous pouvez vous connecter !');
+            if ($hasVerified) {
+                $this->addFlash(EnumFlash::SUCCESS, 'Votre email a été vérifiée avec succès. Vous pouvez vous connecter !');
+            } else {
+                $this->addFlash(EnumFlash::WARNING, 'Votre email a déjà été vérifiée.');
+            }
         } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $exception->getReason());
+            $this->addFlash(EnumFlash::ERROR, $exception->getReason());
 
             return $this->redirectToRoute('app_register');
         }
-
-        $this->addFlash(EnumFlash::WARNING, 'Votre email a déjà été vérifiée.');
 
         return $this->redirectToRoute('app_login');
     }

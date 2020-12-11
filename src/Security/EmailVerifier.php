@@ -51,9 +51,10 @@ class EmailVerifier
     /**
      * @param Request $request
      * @param UserInterface $user
+     * @return bool
      * @throws VerifyEmailExceptionInterface
      */
-    public function handleEmailConfirmation(Request $request, UserInterface $user): void
+    public function handleEmailConfirmation(Request $request, UserInterface $user): bool
     {
         if ($user instanceof User && !$user->getHasConfirmEmail()) {
             $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
@@ -62,6 +63,10 @@ class EmailVerifier
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
+
+            return true;
         }
+
+        return false;
     }
 }
