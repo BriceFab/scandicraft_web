@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Classes\EnumParamKey;
+use App\Classes\EnumParamType;
 use App\Entity\Parameter;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -14,6 +15,7 @@ class ParameterFixtures extends Fixture implements FixtureGroupInterface
     {
         $param = new Parameter();
         $param->setParamKey(EnumParamKey::SITE_NAME);
+        $param->setParamType(EnumParamType::STRING);
         $param->setValue("ScandiCraft");
         $param->setDescription("Nom du site internet");
         $manager->persist($param);

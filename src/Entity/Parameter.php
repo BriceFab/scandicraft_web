@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Classes\EnumParamType;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\ParameterRepository;
 use DateTimeInterface;
@@ -40,6 +41,11 @@ class Parameter
      * @ORM\Column(type="date", nullable=true)
      */
     private $expirationDate;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $param_type = EnumParamType::STRING;
 
     public function getId(): ?int
     {
@@ -95,6 +101,18 @@ class Parameter
     public function setExpirationDate(?DateTimeInterface $expirationDate): self
     {
         $this->expirationDate = $expirationDate;
+
+        return $this;
+    }
+
+    public function getParamType(): ?string
+    {
+        return $this->param_type;
+    }
+
+    public function setParamType(string $param_type): self
+    {
+        $this->param_type = $param_type;
 
         return $this;
     }
