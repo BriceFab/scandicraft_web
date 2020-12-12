@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/mixins";
+
 .main-header {
   position: relative;
   display: block;
@@ -14,7 +16,46 @@
     flex-direction: row;
 
     .nav-item {
-      margin-right: 10px;
+      margin-right: 2rem;
+    }
+  }
+}
+
+.top-container {
+  $marges: 5%;
+  padding-left: $marges;
+  padding-right: $marges;
+}
+
+@include media-breakpoint-only(xs) {
+  .main-header {
+    .header-left {
+      display: none !important;
+    }
+
+    .header-right {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      justify-content: center !important;
+      justify-items: center !important;
+
+      .nav-link {
+        font-size: .95em;
+      }
+    }
+  }
+
+  .top-container {
+    $marges: 0px;
+    padding-left: $marges;
+    padding-right: $marges;
+  }
+
+  .top-header {
+    .navbar-nav {
+      .nav-item {
+        margin-right: 15px;
+      }
     }
   }
 }

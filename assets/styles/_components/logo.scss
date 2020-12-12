@@ -1,11 +1,13 @@
+@import "~bootstrap/scss/mixins";
+
+$main_logo_width: 300px;
+
 .main-menu-logo {
   position: relative;
   vertical-align: middle;
   text-align: center;
 
   .main-logo {
-    $main_logo_width: 300px;
-
     position: absolute;
     width: $main_logo_width;
     height: auto;
@@ -15,12 +17,26 @@
 }
 
 .main-logo {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: $main_logo_width;
+  max-height: $main_logo_width;
+}
+
+@include media-breakpoint-down(lg) {
+  $main_logo_width: 200px;
+
+  .main-logo {
+    width: $main_logo_width;
+    top: -$main_logo_width / 4.5;
+  }
+
+  .main-logo {
+    max-width: $main_logo_width;
+    max-height: $main_logo_width;
+  }
 }
 
 .main-logo:hover {
-  $scale: 1.2;
+  $scale: 1.1;
   $degree: 1deg;
   $duration: .2s;
 

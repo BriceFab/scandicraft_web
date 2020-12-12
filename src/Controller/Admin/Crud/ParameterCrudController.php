@@ -34,11 +34,10 @@ class ParameterCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('value');
-        yield TextField::new('param_type')->hideOnForm();
         yield TextareaField::new('description');
         yield DateField::new('expirationDate');
-        yield DateTimeField::new('updatedAt');
-        yield DateTimeField::new('createdAt');
+        yield DateTimeField::new('updatedAt')->hideOnForm();
+        yield DateTimeField::new('createdAt')->hideOnForm();
     }
 
     public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
