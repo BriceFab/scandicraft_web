@@ -6,9 +6,9 @@
     <div class="container content-container">
 
         <!--  Show this only on mobile to medium screens  -->
-        <a class="navbar-brand d-lg-none" href="{{ path('accueil') }}">Menu</a>
+        <a class="navbar-brand d-lg-none" href="{{ path('accueil') }}">{{ getParameter('param.site.name') }}</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+        <button class="navbar-toggler main-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                 aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,10 +20,11 @@
                 {{ menuItemLink.renderLink("Nous rejoindre", "jouer", "fas fa-play-circle primary-color") }}
                 {{ menuItemLink.renderLink("Voter", "voter") }}
                 {{ menuItemDropdown.renderMenu("Communauté", [
-                    {'route': 'accueil2', 'name': 'test'},
+                    {'route': 'forum', 'name': 'Forum'},
+                    {'route': 'spoils', 'name': 'Spoils'},
+                    {'route': 'sondages', 'name': 'Sondages'},
                     {'type': 'divider'},
-                    {'route': 'accueil', 'name': 'test2'},
-                    {'route': 'accueil', 'name': 'test3'},
+                    {'route': 'maintenances', 'name': 'Maintenances'},
                 ]) }}
             </ul>
 
@@ -37,18 +38,18 @@
             <ul class="navbar-nav">
 
                 {{ menuItemDropdown.renderMenu("Qui sommes-nous ?", [
-                    {'route': 'accueil2', 'name': 'test'},
+                    {'route': 'presentation', 'name': 'Présentation'},
                     {'type': 'divider'},
-                    {'route': 'accueil', 'name': 'test2'},
-                    {'route': 'accueil', 'name': 'test3'},
+                    {'route': 'staff', 'name': "L'équipe"},
+                    {'route': 'remerciements', 'name': 'Remerciements'},
                 ]) }}
                 {{ menuItemDropdown.renderMenu("Aide", [
-                    {'route': 'accueil2', 'name': 'test'},
+                    {'route': 'wiki', 'name': 'Wiki / nouveautés'},
                     {'type': 'divider'},
-                    {'route': 'accueil', 'name': 'test2'},
-                    {'route': 'accueil', 'name': 'test3'},
+                    {'route': 'supprt', 'name': 'Support'},
+                    {'route': 'faq', 'name': 'FAQ'},
                 ]) }}
-                {{ menuItemLink.renderLink("Boutique", "jouer") }}
+                {{ menuItemLink.renderLink("Boutique", "boutique") }}
 
             </ul>
         </div>

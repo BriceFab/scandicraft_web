@@ -1,3 +1,4 @@
+@import "~bootstrap/scss/mixins";
 @import "assets/styles/colors";
 
 .main-menu {
@@ -29,7 +30,7 @@
       transition: opacity .13s ease-in-out;
       opacity: 0;
       visibility: hidden;
-      background-color: rgba(0, 0, 0, .3);
+      //background-color: rgba(0, 0, 0, .3);
       pointer-events: none;
     }
 
@@ -44,6 +45,11 @@
       visibility: visible;
       position: fixed;
     }
+
+    .dropdown-menu {
+      min-width: 100%;
+    }
+
   }
 
   .nav-link.active {
@@ -63,11 +69,54 @@
     font-weight: 600;
   }
 
+  .navbar-brand {
+    color: $grayBlack !important;
+    margin-left: 15px;
+    font-size: .9em;
+    font-weight: bold;
+  }
+
+  .main-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(180,0,0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .main-toggler.navbar-toggler {
+    border-color: $primary;
+  }
+
 }
 
 .main-menu-lg {
   .nav-link {
     padding: 1.8rem;
     margin: 0 1rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .main-menu-lg {
+    .nav-link {
+      padding: 8px 0 8px 0;
+      margin: 0 1rem;
+    }
+  }
+
+  .main-menu {
+    .navbar-collapse {
+      border-top: 1px solid $grayBorder;
+    }
+
+    .nav-link {
+      font-size: 16px;
+    }
+
+    .nav-link.active {
+      box-shadow: none;
+    }
+
+    .nav-link:hover {
+      box-shadow: none;
+      color: $third !important;
+    }
   }
 }
