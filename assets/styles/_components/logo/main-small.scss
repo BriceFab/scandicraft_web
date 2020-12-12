@@ -1,0 +1,11 @@
+$main_logo_width: 180px;
+
+.small-main-logo {
+  width: $main_logo_width !important;
+  left: -$main_logo_width / 2 !important;
+  top: -30px !important;
+
+  $duration: .2s;
+  -webkit-transition: $duration ease-in-out;
+  transition: $duration ease-in-out;
+}

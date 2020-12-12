@@ -1,3 +1,12 @@
 @import "header";
 @import "menu";
-@import "logo";
+@import "./logo/index";
+@import "./layout/index";
+
+.enableBlur > * {
+  filter: blur(1.5px);
+}
+
+.disableBlur {
+  filter: blur(0);
+}

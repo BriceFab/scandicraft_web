@@ -14,7 +14,6 @@
   }
   /* ============ desktop view .end// ============ */
 
-
   @media all and (min-width: 991px) {
     .dropdown:after {
       content: '';
@@ -22,10 +21,10 @@
       right: 0;
       bottom: 0;
       left: 0;
-      transition: opacity .15s ease-in-out;
+      transition: opacity .13s ease-in-out;
       opacity: 0;
       visibility: hidden;
-      background-color: rgba(0, 0, 0, .5);
+      background-color: rgba(0, 0, 0, .3);
       pointer-events: none;
     }
 
@@ -42,4 +41,8 @@
     }
   }
 
+}
+
+.main-menu-lg {
+  padding: 1.2rem 1rem;
 }

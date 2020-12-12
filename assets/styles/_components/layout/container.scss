@@ -1,0 +1,30 @@
+@import "~bootstrap/scss/mixins";
+
+.content-container {
+  max-width: 1500px;
+}
+
+@include media-breakpoint-only(xs) {
+  .content-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@include media-breakpoint-only(sm) {
+  .content-container {
+    max-width: 720px !important;
+  }
+}
+
+@include media-breakpoint-only(md) {
+  .content-container {
+    max-width: 900px !important;
+  }
+}
+
+@include media-breakpoint-only(lg) {
+  .content-container {
+    max-width: 1100px !important;
+  }
+}
