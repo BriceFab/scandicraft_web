@@ -5,11 +5,15 @@ namespace App\Entity;
 use App\Classes\EnumParamType;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\ParameterRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ParameterRepository::class)
+ * @Vich\Uploadable
  */
 class Parameter
 {
@@ -28,9 +32,15 @@ class Parameter
     private $param_key;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $value;
+
+    /**
+     * @Vich\UploadableField(mapping="param_file", fileNameProperty="value")
+     * @var File
+     */
+    private $file;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -69,11 +79,25 @@ class Parameter
         return $this->value;
     }
 
-    public function setValue(string $value): self
+    public function setValue(?string $value): self
     {
         $this->value = $value;
 
         return $this;
+    }
+
+    public function setFile(File $file = null)
+    {
+        $this->file = $file;
+
+        if ($file) {
+            $this->setUpdatedAt(new DateTime('now'));
+        }
+    }
+
+    public function getFile()
+    {
+        return $this->file;
     }
 
     public function getDescription(): ?string

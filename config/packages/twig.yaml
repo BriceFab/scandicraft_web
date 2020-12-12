@@ -4,5 +4,6 @@ twig:
         #Variables
         APP_ENV: "%APP_ENV%"
         isDevMode: "%isDevMode%"
+        path_upload_params: "%path_upload_params%"
         #Services
         user_service: "@user_service"
