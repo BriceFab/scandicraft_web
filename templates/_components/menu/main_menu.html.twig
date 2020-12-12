@@ -1,4 +1,7 @@
-<nav class="main-menu main-menu-lg navbar navbar-expand-lg navbar-dark bg-dark">
+{% import "_components/menu/items/link.html.twig" as menuItemLink %}
+{% import "_components/menu/items/dropdown.html.twig" as menuItemDropdown %}
+
+<nav class="main-menu main-menu-lg navbar navbar-expand-lg navbar-dark">
 
     <div class="container content-container">
 
@@ -14,15 +17,14 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarToggle">
 
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+                {{ menuItemLink.renderLink("Nous rejoindre", "jouer", "fas fa-play-circle primary-color") }}
+                {{ menuItemLink.renderLink("Voter", "voter") }}
+                {{ menuItemDropdown.renderMenu("Communauté", [
+                    {'route': 'accueil2', 'name': 'test'},
+                    {'type': 'divider'},
+                    {'route': 'accueil', 'name': 'test2'},
+                    {'route': 'accueil', 'name': 'test3'},
+                ]) }}
             </ul>
 
             <!--   Show this only lg screens and up   -->
@@ -34,25 +36,20 @@
 
             <ul class="navbar-nav">
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+                {{ menuItemDropdown.renderMenu("Qui sommes-nous ?", [
+                    {'route': 'accueil2', 'name': 'test'},
+                    {'type': 'divider'},
+                    {'route': 'accueil', 'name': 'test2'},
+                    {'route': 'accueil', 'name': 'test3'},
+                ]) }}
+                {{ menuItemDropdown.renderMenu("Aide", [
+                    {'route': 'accueil2', 'name': 'test'},
+                    {'type': 'divider'},
+                    {'route': 'accueil', 'name': 'test2'},
+                    {'route': 'accueil', 'name': 'test3'},
+                ]) }}
+                {{ menuItemLink.renderLink("Boutique", "jouer") }}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
             </ul>
         </div>
 

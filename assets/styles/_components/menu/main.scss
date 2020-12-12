@@ -1,4 +1,9 @@
+@import "assets/styles/colors";
+
 .main-menu {
+  padding: 0;
+  background-color: $grayLayout;
+  border-bottom: 1px solid $grayBorder;
 
   /* ============ desktop view ============ */
   @media all and (min-width: 992px) {
@@ -41,8 +46,28 @@
     }
   }
 
+  .nav-link.active {
+    box-shadow: 0 -2px 0 0 $primary;
+    color: $primary !important;
+  }
+
+  .nav-link:hover {
+    box-shadow: 0 -2px 0 0 $primary;
+  }
+
+  .nav-link {
+    font-family: Signika-Bold, sans-serif !important;
+    color: $grayBlack !important;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
 }
 
 .main-menu-lg {
-  padding: 1.2rem 1rem;
+  .nav-link {
+    padding: 1.8rem;
+    margin: 0 1rem;
+  }
 }

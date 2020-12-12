@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/mixins";
+@import "../../colors";
 
 .main-header {
   position: relative;
@@ -16,7 +17,12 @@
     flex-direction: row;
 
     .nav-item {
+      font-size: .9em;
       margin-right: 2rem;
+
+      a {
+        color: $third;
+      }
     }
   }
 }
@@ -40,7 +46,7 @@
       justify-items: center !important;
 
       .nav-link {
-        font-size: .95em;
+        font-size: .85em;
       }
     }
   }

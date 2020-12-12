@@ -1,0 +1,17 @@
+{% macro renderLink(name, route, fontawesome = null) %}
+    {% set isActive = app.request.get('_route') in [route] %}
+
+    <li class="nav-item">
+        <a class="nav-link {{ isActive ? 'active' : '' }}" href="{{ checkRouteExists(route) ? path(route) : '#' }}">
+            {% if fontawesome is defined and fontawesome is not null %}
+                <i class="{{ fontawesome }}"></i>
+            {% endif %}
+
+            {{ name }}
+
+            {% if isActive %}
+                <span class="sr-only">(current)</span>
+            {% endif %}
+        </a>
+    </li>
+{% endmacro %}

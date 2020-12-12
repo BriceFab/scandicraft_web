@@ -1,0 +1,19 @@
+{% macro renderMenu(name, submenus) %}
+    <li class="nav-item dropdown">
+        <div class="nav-link dropdown-toggle" id="navbar_{{ name }}" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ name }}
+        </div>
+        <div class="dropdown-menu" aria-labelledby="navbar_{{ name }}">
+            {% for submenu in submenus %}
+                {% if submenu.type is defined %}
+                    <div class="dropdown-divider"></div>
+                {% else %}
+                    <a class="dropdown-item" href="{{ submenu.route is defined and checkRouteExists(submenu.route) ? path(submenu.route): '#' }}">
+                        {{ submenu.name is defined ? submenu.name : 'submenu' }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+{% endmacro %}
