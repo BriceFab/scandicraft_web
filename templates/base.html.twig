@@ -20,11 +20,18 @@
     </head>
     <body>
 
-        {% include "_components/header.html.twig" %}
+        {% block header %}
+            {% include "_components/layout/header.html.twig" %}
+        {% endblock %}
 
         {% block body %}{% endblock %}
+
         {% block js_variables %}
             <div id="toasts" data-toasts="{{ app.flashes|json_encode }}"></div>
+        {% endblock %}
+
+        {% block footer %}
+            {% include "_components/layout/footer.html.twig" %}
         {% endblock %}
 
         {% block javascripts %}
