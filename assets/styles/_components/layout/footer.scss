@@ -7,6 +7,10 @@
   $marges: 1.2em;
   padding: $marges 0 $marges 0;
   font-size: 1em;
+
+  .footer-right {
+    text-align: right;
+  }
 }
 
 @include media-breakpoint-down(md) {
@@ -14,5 +18,10 @@
     $marges: 1.1em;
     padding: $marges 0 $marges 0;
     font-size: .8em;
+  }
+
+  .footer-right {
+    margin-top: 5px;
+    text-align: center !important;
   }
 }
