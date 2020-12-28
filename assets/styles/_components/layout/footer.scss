@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/mixins";
+@import "../../colors";
+
+.main-footer {
+  background-color: $grayBlack;
+  color: $third;
+  $marges: 1.2em;
+  padding: $marges 0 $marges 0;
+  font-size: 1em;
+}
+
+@include media-breakpoint-down(md) {
+  .main-footer {
+    $marges: 1.1em;
+    padding: $marges 0 $marges 0;
+    font-size: .8em;
+  }
+}
