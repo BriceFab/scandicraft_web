@@ -84,6 +84,8 @@
   }
 
   .main-toggler {
+    min-height: 40px;
+
     .navbar-toggler-icon {
       background-image: url("../../../../assets/img/cancel.svg");
       max-height: 20px;
@@ -92,12 +94,29 @@
 
   .main-toggler.navbar-toggler {
     border-color: $grayLight;
-    border-radius: 5px;
+    border-radius: 3px;
+  }
+
+  .dropdown-menu {
+    border-radius: 3px;
+  }
+
+  .dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
+    color: $primary;
+    font-weight: bold;
+    background-color: white;
+  }
+
+  //desktop scroll
+  .nav-link {
+    padding: 1rem;
+    margin: 0 1rem;
   }
 
 }
 
 .main-menu-lg {
+  //desktop top
   .nav-link {
     padding: 1.8rem;
     margin: 0 1rem;
@@ -106,8 +125,10 @@
 
 @include media-breakpoint-down(md) {
   .main-menu-lg {
+    //mobile
     .nav-link {
-      padding: 8px 0 8px 0;
+      $top: 12px;
+      padding: $top 0 $top 0;
       margin: 0 1rem;
     }
   }
@@ -127,7 +148,11 @@
 
     .nav-link:hover {
       box-shadow: none;
-      color: $third !important;
+      color: $primary !important;
+    }
+
+    .dropdown-menu {
+      border-radius: 0;
     }
   }
 }

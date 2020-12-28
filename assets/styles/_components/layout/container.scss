@@ -4,6 +4,20 @@
   max-width: 1500px;
 }
 
+@include media-breakpoint-up(md) {
+  .section-content {
+    padding-top: 3em;
+    padding-bottom: 3em;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .section-content {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
 @include media-breakpoint-only(xs) {
   .content-container {
     width: 100% !important;

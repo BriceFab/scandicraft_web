@@ -24,7 +24,12 @@
             {% include "_components/layout/header.html.twig" %}
         {% endblock %}
 
-        {% block body %}{% endblock %}
+        {% block body %}
+            <section class="section-content container content-container">
+                {% block content %}
+                {% endblock %}
+            </section>
+        {% endblock %}
 
         {% block js_variables %}
             <div id="toasts" data-toasts="{{ app.flashes|json_encode }}"></div>

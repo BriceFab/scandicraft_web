@@ -6,10 +6,8 @@
 
 @import "bootstrap/override";
 
+@import "typographie";
+
 *:active, *:focus {
   outline: none !important;
-}
-
-.main-footer {
-  background-color: red;
 }
