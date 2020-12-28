@@ -1,0 +1,43 @@
+@import "assets/styles/colors";
+@import "~bootstrap/scss/mixins";
+
+$download_system_size: 120px;
+
+.download_system {
+  font-size: $download_system_size;
+  border: 1px #333333 solid;
+  border-radius: 15px;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.1), 0px 3px 4px 0px rgba(0, 0, 0, 0.1),
+  0px 1px 8px 0px rgba(0, 0, 0, 0.1);
+  color: $secondary;
+
+  $size: 180px;
+  height: $size !important;
+  width: $size !important;
+
+  padding: 25px;
+}
+
+.fa-windows:hover {
+  color: white;
+  background-color: #3891d6;
+  border: none;
+}
+
+.fa-apple:hover {
+  color: white;
+  background-color: #8e949a;
+  border: none;
+}
+
+.fa-linux:hover {
+  color: white;
+  background-color: #f7cf1b;
+  border: none;
+}
+
+@include media-breakpoint-down(md) {
+  .download_system {
+    display: none;
+  }
+}

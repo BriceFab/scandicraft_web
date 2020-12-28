@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jouer{% endblock %}
+
+{% block content %}
+
+    <h1>Joue avec nous</h1>
+
+    <p class="d-md-none d-xs-block">
+        Pour pouvoir télécharger le launcher Minecraft, il faut être sur un ordinateur!
+    </p>
+    <p class="d-none d-sm-block">Sélectionne ton système d'exploitation (windows, mac ou linux) afin de télécharger le
+        launcher Minecraft et viens jouer avec nous !</p>
+
+    <div class="container my-5" style="text-align:center;">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <a href="{{ path('maintenances') }}">
+                    <i class="fab fa-windows download_system"></i>
+                </a>
+            </div>
+            <div class="col-12 col-sm-4">
+                <a href="{{ path('maintenances') }}">
+                    <i class="fab fa-apple download_system"></i>
+                </a>
+            </div>
+            <div class="col-12 col-sm-4">
+                <a href="{{ path('maintenances') }}">
+                    <i class="fab fa-linux download_system"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% if hasMaintenance() == true %}
+        <p class="my-4">
+            Certains de nos services sont en maintenance:
+            <a href="{{ path('maintenances') }}" class="link_maintenances">voir plus de détails</a>.
+        </p>
+    {% endif %}
+
+    <h1>Rejoins-nous !</h1>
+    <p>Disscute avec la communauté de ScandiCraft et suis les actualités.</p>
+    <div>
+{#        TODO#}
+    </div>
+
+{% endblock %}
