@@ -1,23 +1,31 @@
 const $ = require('jquery');
 
-const footer = $('footer.main-footer');
+$(() => {
+    positionFooter();
 
-if (footer) {
-    $(() => {
-        placeFooter();
-    });
-}
+    $(window)
+        .scroll(positionFooter)
+        .resize(positionFooter)
+});
 
-function placeFooter() {
-    if ($(document.body).height() < $(window).height()) {
-        footer.css({
+function positionFooter() {
+    let footerHeight,
+        footerTop,
+        $footer = $('footer.main-footer');
+
+    footerHeight = $footer.outerHeight();
+    footerTop = ($(window).scrollTop() + $(window).height() - footerHeight) + "px";
+
+    if (($(document.body).height() + footerHeight) < $(window).height()) {
+        $footer.css({
             position: "absolute",
-            bottom: "0px",
-            width: '100%',
+            width: "100%",
+            top: footerTop,
         });
     } else {
-        footer.css({
-            position: "",
+        $footer.css({
+            position: "static",
         });
     }
+
 }
