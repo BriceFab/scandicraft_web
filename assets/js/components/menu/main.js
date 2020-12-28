@@ -23,7 +23,7 @@ function onBodyScroll() {
     const mainLogo = $('.main-menu-logo img');
 
     if (lastScrollY > 100) {
-        mainHeader.css('display', 'unset');
+        mainHeader.css('display', 'initial');
         mainMenu.addClass('sticky-top');
         mainMenu.removeClass('main-menu-lg');
         mainLogo.addClass('small-main-logo');

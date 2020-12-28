@@ -5,8 +5,20 @@
 
     <div class="container content-container">
 
-        <!--  Show this only on mobile to medium screens  -->
-        <a class="navbar-brand d-lg-none" href="{{ path('accueil') }}">{{ getParameter('param.site.name') }}</a>
+        <!--  Only on mobile  -->
+        <a class="navbar-brand d-lg-none"
+           href="{{ hasMaintenance() == true ? path('maintenances') : path('accueil') }}">
+            {{ getParameter('param.site.name') }}
+            -
+            <span>
+                {% if hasMaintenance() == true %}
+                    En maintenance
+                {% else %}
+                    <i class="fas fa-user"></i>
+                    {{ user_service.onlineUsersString() }}
+                {% endif %}
+            </span>
+        </a>
 
         <button class="navbar-toggler main-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                 aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">

@@ -11,7 +11,7 @@ parameters:
     forum_images_directory: '%kernel.project_dir%/public/uploads/forum/images'
     VOTE_SERVER_PRIVE_KEY: '%env(VOTE_SERVER_PRIVE_KEY)%'
     APP_ENV: '%env(APP_ENV)%'
-    isDevMode: '%env(APP_ENV)% == "dev"'
+    is_dev_mode: '%env(APP_ENV)% == "dev"'
     VOTE_DEV_TEST_IP: '%env(VOTE_DEV_TEST_IP)%'
     skins_directory: '%kernel.project_dir%/public/uploads/skins'
     capes_directory: '%kernel.project_dir%/public/uploads/capes'

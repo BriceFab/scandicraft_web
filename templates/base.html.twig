@@ -11,7 +11,7 @@
         {% endblock %}
 
         {% block head_javascripts %}
-            {% if not isDevMode %}
+            {% if not is_dev_mode %}
                 <!-- Google ads -->
                 <script data-ad-client="ca-pub-1457190527508329" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             {% endif %}
@@ -38,7 +38,7 @@
             {{ encore_entry_script_tags('app') }}
             {{ encore_entry_script_tags('toast') }}
 
-            {% if not isDevMode %}
+            {% if not is_dev_mode %}
                 <!-- Global site tag (gtag.js) - Google Analytics -->
                 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65579824-1"></script>
                 <script>

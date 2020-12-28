@@ -3,7 +3,7 @@ twig:
     globals:
         #Variables
         APP_ENV: "%APP_ENV%"
-        isDevMode: "%isDevMode%"
+        is_dev_mode: "%is_dev_mode%"
         path_upload_params: "%path_upload_params%"
         #Services
         user_service: "@user_service"

@@ -27,4 +27,11 @@ class UserService
     {
         return 0;
     }
+
+    public function onlineUsersString() {
+        $nbr_users = $this->countOnlineUsers();
+        $str_users = $nbr_users > 0 ? 'connectés' : 'connecté';
+        return "$nbr_users $str_users";
+    }
+
 }

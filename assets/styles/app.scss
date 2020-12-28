@@ -5,3 +5,11 @@
 @import "_components";
 
 @import "bootstrap/override";
+
+*:active, *:focus {
+  outline: none !important;
+}
+
+.main-footer {
+  background-color: red;
+}
