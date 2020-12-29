@@ -12,8 +12,11 @@
         {% for home_slide in home_slides %}
             <div class="home-carousel-cell">
                 <img class="carousel-cell-image"
-                     data-flickity-lazyload="{{ vich_uploader_asset(home_slide, 'file') }}"
-                     alt="test"/>
+                     data-flickity-lazyload="{{ vich_uploader_asset(home_slide, 'file') | imagine_filter('slides') }}"
+                     alt="{{ home_slide.alt }}"
+                     title="{{ home_slide.title }}"
+                     src=""
+                />
             </div>
         {% endfor %}
     </div>
