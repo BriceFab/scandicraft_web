@@ -10,6 +10,7 @@ use App\Controller\Admin\Crud\Forum\ForumDiscussionAnswerCrudController;
 use App\Controller\Admin\Crud\Forum\ForumDiscussionCrudController;
 use App\Controller\Admin\Crud\Forum\ForumDiscussionStatusCrudController;
 use App\Controller\Admin\Crud\Forum\ForumSubCategoryCrudController;
+use App\Controller\Admin\Crud\ImagesCrudController;
 use App\Controller\Admin\Crud\ParameterCrudController;
 use App\Controller\Admin\Crud\Spoil\SpoilCrudController;
 use App\Controller\Admin\Crud\Spoil\SpoilGoalTypeCrudController;
@@ -131,16 +132,18 @@ class DashboardController extends AbstractDashboardController
 
         // Paramètres
         if ($this->isGranted(EnumRoles::ROLE_ADMIN)) {
-            // Réseaux
-
             // Paramètres
+            yield MenuItem::linkToCrud('Parameter', null, ParameterCrudController::getEntityFqcn());
+
+            // Images
+            yield MenuItem::linkToCrud('Images', null, ImagesCrudController::getEntityFqcn());
+
+            // Réseaux
         }
 
         // Logs
         if ($this->isGranted(EnumRoles::ROLE_ADMIN)) {
 
         }
-
-        yield MenuItem::linkToCrud('Parameter', 'icon class', ParameterCrudController::getEntityFqcn());
     }
 }

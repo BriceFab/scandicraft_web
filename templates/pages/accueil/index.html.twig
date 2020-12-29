@@ -9,14 +9,13 @@
 
 {% block body %}
     <div class="carousel">
-        <div class="home-carousel-cell">
-            <img class="carousel-cell-image"
-                 data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg"  alt="test"/>
-        </div>
-        <div class="home-carousel-cell">
-            <img class="carousel-cell-image"
-                 data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg"  alt="test"/>
-        </div>
+        {% for home_slide in home_slides %}
+            <div class="home-carousel-cell">
+                <img class="carousel-cell-image"
+                     data-flickity-lazyload="{{ vich_uploader_asset(home_slide, 'file') }}"
+                     alt="test"/>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
 

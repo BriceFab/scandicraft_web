@@ -18,6 +18,7 @@ parameters:
     path.spoil.upload_images: /uploads/spoils/images
     path_upload_attachment: /uploads/attachments
     path_upload_params: /uploads/params
+    path_upload_images: /uploads/images
     PAYPAL_CLIENT_ID: '%env(PAYPAL_CLIENT_ID)%'
     PAYPAL_SECRET_ID: '%env(PAYPAL_SECRET_ID)%'
     DEDIPASS_PUBLIC_KEY: '%env(DEDIPASS_PUBLIC_KEY)%'

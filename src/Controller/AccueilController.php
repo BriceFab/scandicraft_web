@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ImagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,10 +11,14 @@ class AccueilController extends AbstractController
 {
     /**
      * @Route("/", name="accueil")
+     * @param ImagesRepository $imagesRepository
+     * @return Response
      */
-    public function index(): Response
+    public function index(ImagesRepository $imagesRepository): Response
     {
-        return $this->render('pages/accueil/index.html.twig');
+        return $this->render('pages/accueil/index.html.twig', [
+            'home_slides' => $imagesRepository->findImagesByKey('home_slide_')
+        ]);
     }
 
     /**
