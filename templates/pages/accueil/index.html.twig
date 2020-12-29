@@ -2,85 +2,25 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block content %}
-    <h1>titre 1</h1>
-    <h2>titre 2</h2>
-    <h3>titre 3</h3>
-    <h4>titre 4</h4>
-    <h5>titre 5</h5>
-    <h6>titre 6</h6>
-    <div class="citation">
-        citation
-        <span class="auteur">
-            auteur
-        </span>
-    </div>
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('slider') }}
+{% endblock %}
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean metus tellus, vehicula vel velit vitae, lacinia
-    eleifend eros. Sed a tortor et justo dignissim malesuada quis eu nunc. Nunc et lorem sed sem hendrerit posuere a
-    sit amet arcu. Aenean egestas sapien eu feugiat commodo. Maecenas felis ligula, congue id aliquet a, consectetur
-    id lorem. Morbi est neque, porttitor in feugiat at, pretium quis felis. Suspendisse luctus porttitor varius.
-    <br/><br/>
-    Nunc quam quam, vestibulum eget semper nec, tempus nec risus. Suspendisse quis rutrum turpis. Lorem ipsum dolor
-    sit amet, consectetur adipiscing elit. Ut eget elit dictum, condimentum tellus sed, gravida neque. Nulla et diam
-    id diam condimentum venenatis. Nunc luctus lorem vel sodales molestie. Curabitur cursus augue vitae massa luctus
-    consequat. Duis feugiat porta lacus, non tempus risus ultricies eu. Proin nec enim nec dolor porttitor
-    condimentum. Vivamus commodo sed nibh sed pulvinar. Vivamus blandit, tellus quis egestas placerat, lectus purus
-    tincidunt velit, eu varius magna diam a magna. Morbi pellentesque egestas ex, quis mattis nunc tristique at.
-    <br/><br/>
-    Curabitur rhoncus tincidunt orci. Fusce vel consectetur urna. Ut in tincidunt lacus. Aenean magna urna, ultrices
-    eget blandit et, dapibus vel velit. Sed eget lectus ut ex pellentesque ornare id eu turpis. Nullam mauris ex,
-    maximus nec porta nec, mollis non nunc. Donec venenatis nisl risus, sed laoreet velit molestie blandit. Nullam
-    at massa sit amet mi rhoncus bibendum. Nullam urna odio, sodales non leo quis, posuere porta purus. Etiam id
-    justo eu velit bibendum imperdiet. Suspendisse at dui quis turpis facilisis sodales. Fusce nec molestie tellus,
-    non pharetra mauris. Integer fringilla justo et nulla accumsan, ut malesuada purus mattis. Integer et purus
-    lorem.
-    <br/><br/>
-    Nullam dictum risus ut auctor suscipit. Sed sollicitudin lacus turpis, ut fermentum nisi imperdiet vitae.
-    Quisque nec facilisis felis. Donec tincidunt nisl ac malesuada sollicitudin. Curabitur sit amet dui magna. Donec
-    odio elit, fermentum sed est eget, vestibulum egestas dui. Nunc eu tincidunt massa. Quisque maximus, libero vel
-    convallis posuere, sem nisi feugiat elit, a varius erat nibh nec nulla.
-    <br/><br/>
-    Nam enim velit, placerat vel feugiat vitae, dictum nec justo. Donec tincidunt dui a vulputate gravida. Fusce
-    pharetra gravida nisi, eget varius libero consequat vel. Cras lorem dolor, dictum at sagittis quis, egestas et
-    lectus. Cras pulvinar velit eget cursus lobortis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-    Sed ac varius justo. Cras elementum a nibh vitae gravida. Praesent id venenatis eros. Ut eu libero eros. Ut
-    dignissim ut velit non aliquam. Integer scelerisque imperdiet efficitur. Donec non justo cursus, efficitur dolor
-    quis, mattis mauris. Mauris sapien enim, elementum id mollis mattis, tempor quis urna. Orci varius natoque
-    penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+{% block body %}
+    <div class="carousel">
+        <div class="home-carousel-cell">
+            <img class="carousel-cell-image"
+                 data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg"  alt="test"/>
+        </div>
+        <div class="home-carousel-cell">
+            <img class="carousel-cell-image"
+                 data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg"  alt="test"/>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('slider') }}
 {% endblock %}

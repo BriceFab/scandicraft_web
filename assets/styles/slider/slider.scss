@@ -1,0 +1,23 @@
+.carousel {
+  background: #EEE;
+}
+
+/* fade in image when loaded */
+.carousel-cell-image {
+  transition: opacity 0.4s;
+  opacity: 0;
+}
+
+.carousel-cell-image.flickity-lazyloaded,
+.carousel-cell-image.flickity-lazyerror {
+  opacity: 1;
+}
+
+//HOME PAGE
+.home-carousel-cell {
+  /* full width */
+  width: 100%;
+  height: 600px;
+  /* height of carousel */
+  margin-right: 10px;
+}
