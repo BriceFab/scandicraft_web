@@ -19,32 +19,20 @@ class NewsRepository extends ServiceEntityRepository
         parent::__construct($registry, News::class);
     }
 
-    // /**
-    //  * @return News[] Returns an array of News objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $max
+     * @return News[] Returns an array of News objects
+     */
+    public function findLastNews(int $max = 0)
     {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('n')
+            ->orderBy('n.dateCreatedAt', 'DESC');
 
-    /*
-    public function findOneBySomeField($value): ?News
-    {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($max > 0) {
+            $qb->setMaxResults($max);
+        }
+
+        return $qb->getQuery()->getResult();
     }
-    */
+
 }

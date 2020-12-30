@@ -16,6 +16,14 @@
 }
 
 //HOME PAGE
+.carousel-home.is-fullscreen {
+  .home-carousel-cell {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
 .home-carousel-cell {
   /* full width */
   width: 100%;
