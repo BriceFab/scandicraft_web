@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class SurveyAnswerList
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id()
@@ -79,12 +79,12 @@ class SurveyAnswerList
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getUserCreatedBy(): ?User
     {
         return $this->createdBy;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setUserCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
 

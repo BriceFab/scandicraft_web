@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Repository\UserRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\Collection;
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id
@@ -311,7 +311,7 @@ class User implements UserInterface
     {
         if (!$this->surveyAnswerLists->contains($surveyAnswerList)) {
             $this->surveyAnswerLists[] = $surveyAnswerList;
-            $surveyAnswerList->setCreatedBy($this);
+            $surveyAnswerList->setUserCreatedBy($this);
         }
 
         return $this;
@@ -322,8 +322,8 @@ class User implements UserInterface
         if ($this->surveyAnswerLists->contains($surveyAnswerList)) {
             $this->surveyAnswerLists->removeElement($surveyAnswerList);
             // set the owning side to null (unless already changed)
-            if ($surveyAnswerList->getCreatedBy() === $this) {
-                $surveyAnswerList->setCreatedBy(null);
+            if ($surveyAnswerList->getUserCreatedBy() === $this) {
+                $surveyAnswerList->setUserCreatedBy(null);
             }
         }
 
@@ -564,7 +564,7 @@ class User implements UserInterface
     {
         if (!$this->forumDiscussions->contains($forumDiscussion)) {
             $this->forumDiscussions[] = $forumDiscussion;
-            $forumDiscussion->setCreatedBy($this);
+            $forumDiscussion->setUserCreatedBy($this);
         }
 
         return $this;
@@ -575,8 +575,8 @@ class User implements UserInterface
         if ($this->forumDiscussions->contains($forumDiscussion)) {
             $this->forumDiscussions->removeElement($forumDiscussion);
             // set the owning side to null (unless already changed)
-            if ($forumDiscussion->getCreatedBy() === $this) {
-                $forumDiscussion->setCreatedBy(null);
+            if ($forumDiscussion->getUserCreatedBy() === $this) {
+                $forumDiscussion->setUserCreatedBy(null);
             }
         }
 
@@ -595,7 +595,7 @@ class User implements UserInterface
     {
         if (!$this->forumDiscussionAnswers->contains($forumDiscussionAnswer)) {
             $this->forumDiscussionAnswers[] = $forumDiscussionAnswer;
-            $forumDiscussionAnswer->setCreatedBy($this);
+            $forumDiscussionAnswer->setUserCreatedBy($this);
         }
 
         return $this;
@@ -606,8 +606,8 @@ class User implements UserInterface
         if ($this->forumDiscussionAnswers->contains($forumDiscussionAnswer)) {
             $this->forumDiscussionAnswers->removeElement($forumDiscussionAnswer);
             // set the owning side to null (unless already changed)
-            if ($forumDiscussionAnswer->getCreatedBy() === $this) {
-                $forumDiscussionAnswer->setCreatedBy(null);
+            if ($forumDiscussionAnswer->getUserCreatedBy() === $this) {
+                $forumDiscussionAnswer->setUserCreatedBy(null);
             }
         }
 
@@ -700,7 +700,7 @@ class User implements UserInterface
     {
         if (!$this->voteSites->contains($voteSite)) {
             $this->voteSites[] = $voteSite;
-            $voteSite->setCreatedBy($this);
+            $voteSite->setUserCreatedBy($this);
         }
 
         return $this;
@@ -711,8 +711,8 @@ class User implements UserInterface
         if ($this->voteSites->contains($voteSite)) {
             $this->voteSites->removeElement($voteSite);
             // set the owning side to null (unless already changed)
-            if ($voteSite->getCreatedBy() === $this) {
-                $voteSite->setCreatedBy(null);
+            if ($voteSite->getUserCreatedBy() === $this) {
+                $voteSite->setUserCreatedBy(null);
             }
         }
 
@@ -731,7 +731,7 @@ class User implements UserInterface
     {
         if (!$this->attachments->contains($attachment)) {
             $this->attachments[] = $attachment;
-            $attachment->setCreatedBy($this);
+            $attachment->setUserCreatedBy($this);
         }
 
         return $this;
@@ -742,8 +742,8 @@ class User implements UserInterface
         if ($this->attachments->contains($attachment)) {
             $this->attachments->removeElement($attachment);
             // set the owning side to null (unless already changed)
-            if ($attachment->getCreatedBy() === $this) {
-                $attachment->setCreatedBy(null);
+            if ($attachment->getUserCreatedBy() === $this) {
+                $attachment->setUserCreatedBy(null);
             }
         }
 
@@ -774,7 +774,7 @@ class User implements UserInterface
     {
         if (!$this->storeArticles->contains($storeArticle)) {
             $this->storeArticles[] = $storeArticle;
-            $storeArticle->setCreatedBy($this);
+            $storeArticle->setUserCreatedBy($this);
         }
 
         return $this;
@@ -785,8 +785,8 @@ class User implements UserInterface
         if ($this->storeArticles->contains($storeArticle)) {
             $this->storeArticles->removeElement($storeArticle);
             // set the owning side to null (unless already changed)
-            if ($storeArticle->getCreatedBy() === $this) {
-                $storeArticle->setCreatedBy(null);
+            if ($storeArticle->getUserCreatedBy() === $this) {
+                $storeArticle->setUserCreatedBy(null);
             }
         }
 

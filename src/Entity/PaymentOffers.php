@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Repository\PaymentOffersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PaymentOffers
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id
@@ -115,12 +115,12 @@ class PaymentOffers
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getUserCreatedBy(): ?User
     {
         return $this->createdBy;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setUserCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
 

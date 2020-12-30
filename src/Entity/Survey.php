@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Survey
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id()

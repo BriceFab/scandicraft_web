@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +13,7 @@ use DateTime;
  */
 class Thanks
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id()

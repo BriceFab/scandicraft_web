@@ -28,7 +28,7 @@ class ImagesRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('i')
             ->andWhere("i.image_key LIKE :image_key")
             ->setParameter('image_key', "%$images_key%")
-            ->orderBy('i.updatedAt', 'DESC')
+            ->orderBy('i.dateUpdatedAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;

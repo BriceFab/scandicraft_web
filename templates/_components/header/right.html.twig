@@ -1,5 +1,13 @@
 <ul class="navbar-nav">
     {% if app.user %}
+        {% if is_granted('ROLE_PANEL_ADMIN') %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ '/' ~ ADMIN_PATH }}" target="_blank">
+                    <i class="fas fa-users-cog"></i>
+                    Panel admin
+                </a>
+            </li>
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link" href="{{ path('compte') }}">
                 <i class="fas fa-user-circle"></i>

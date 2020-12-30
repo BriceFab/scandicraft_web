@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ForumDiscussionAnswer
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id()
@@ -45,12 +45,12 @@ class ForumDiscussionAnswer
         return $this->id;
     }
 
-    public function getCreatedBy(): ?User
+    public function getUserCreatedBy(): ?User
     {
         return $this->createdBy;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setUserCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
 
@@ -83,6 +83,6 @@ class ForumDiscussionAnswer
 
     public function __toString()
     {
-        return 'reponse#' . $this->getId() . '-' . $this->getCreatedBy()->getUsername();
+        return 'reponse#' . $this->getId() . '-' . $this->getUserCreatedBy()->getUsername();
     }
 }

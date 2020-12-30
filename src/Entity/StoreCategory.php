@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\EnableTrait;
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Repository\StoreCategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StoreCategory
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
     use EnableTrait;
 
     /**

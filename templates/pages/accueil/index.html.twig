@@ -8,17 +8,27 @@
 {% endblock %}
 
 {% block body %}
-    <div class="carousel">
+    <div class="carousel mb-3">
         {% for home_slide in home_slides %}
             <div class="home-carousel-cell">
+                {% set slide_img = vich_uploader_asset(home_slide, 'file') | imagine_filter('slides') %}
+                
                 <img class="carousel-cell-image"
-                     data-flickity-lazyload="{{ vich_uploader_asset(home_slide, 'file') | imagine_filter('slides') }}"
                      alt="{{ home_slide.alt }}"
                      title="{{ home_slide.title }}"
-                     src=""
+                        {% if loop.index == 0 %}
+                            src="{{ slide_img }}"
+                        {% else %}
+                            data-flickity-lazyload="{{ slide_img }}"
+                        {% endif %}
                 />
             </div>
         {% endfor %}
+    </div>
+
+    {# News #}
+    <div>
+
     </div>
 {% endblock %}
 

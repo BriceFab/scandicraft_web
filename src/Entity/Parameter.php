@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Classes\EnumParamType;
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Repository\ParameterRepository;
 use DateTime;
 use DateTimeInterface;
@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Parameter
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id

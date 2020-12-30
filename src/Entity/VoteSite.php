@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Repository\VoteSiteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class VoteSite
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
 
     /**
      * @ORM\Id()
@@ -31,7 +31,7 @@ class VoteSite
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="voteSites")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $createdBy;
+    protected $createdBy;
 
     /**
      * @ORM\Column(type="smallint")
@@ -75,12 +75,12 @@ class VoteSite
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getUserCreatedBy(): ?User
     {
         return $this->createdBy;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setUserCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
 

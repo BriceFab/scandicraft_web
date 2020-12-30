@@ -11,6 +11,7 @@ use App\Controller\Admin\Crud\Forum\ForumDiscussionCrudController;
 use App\Controller\Admin\Crud\Forum\ForumDiscussionStatusCrudController;
 use App\Controller\Admin\Crud\Forum\ForumSubCategoryCrudController;
 use App\Controller\Admin\Crud\ImagesCrudController;
+use App\Controller\Admin\Crud\News\NewsCrudController;
 use App\Controller\Admin\Crud\ParameterCrudController;
 use App\Controller\Admin\Crud\Spoil\SpoilCrudController;
 use App\Controller\Admin\Crud\Spoil\SpoilGoalTypeCrudController;
@@ -102,13 +103,6 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Réponses', null, ForumDiscussionAnswerCrudController::getEntityFqcn()),
                 MenuItem::linkToCrud('Status', null, ForumDiscussionStatusCrudController::getEntityFqcn())->setPermission(EnumRoles::ROLE_ADMIN),
             ]);
-
-            // Sondages
-            yield MenuItem::subMenu('Sondages', 'fa fa-poll-h')->setSubItems([
-                MenuItem::linkToCrud('Sondages', null, SurveyCrudController::getEntityFqcn()),
-                MenuItem::linkToCrud('Réponses', null, SurveyAnswerCrudController::getEntityFqcn()),
-                MenuItem::linkToCrud('Liste réponses', null, SurveyAnswerListCrudController::getEntityFqcn()),
-            ]);
         }
 
         // Boutique
@@ -126,6 +120,16 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Partages', null, SpoilShareCrudController::getEntityFqcn()),
                 MenuItem::linkToCrud('Objectifs', null, SpoilGoalTypeCrudController::getEntityFqcn()),
             ]);
+
+            // Sondages
+            yield MenuItem::subMenu('Sondages', 'fa fa-poll-h')->setSubItems([
+                MenuItem::linkToCrud('Sondages', null, SurveyCrudController::getEntityFqcn()),
+                MenuItem::linkToCrud('Réponses', null, SurveyAnswerCrudController::getEntityFqcn()),
+                MenuItem::linkToCrud('Liste réponses', null, SurveyAnswerListCrudController::getEntityFqcn()),
+            ]);
+
+            //News
+            yield MenuItem::linkToCrud('News', null, NewsCrudController::getEntityFqcn());
 
             // Équipe
         }

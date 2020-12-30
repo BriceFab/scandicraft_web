@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\EnableTrait;
-use App\Entity\Traits\UpdateCreateTrait;
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Repository\StoreArticleRepository;
 use DateTime;
 use DateTimeInterface;
@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StoreArticle
 {
-    use UpdateCreateTrait;
+    use UpdateCreateByTrait;
     use EnableTrait;
 
     /**
@@ -137,12 +137,12 @@ class StoreArticle
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getUserCreatedBy(): ?User
     {
         return $this->createdBy;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setUserCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
 

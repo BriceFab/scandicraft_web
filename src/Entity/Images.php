@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\UpdateCreateByTrait;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\ImagesRepository;
 use DateTime;
