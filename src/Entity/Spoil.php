@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\ImagesTrait;
 use App\Entity\Traits\SlugTrait;
+use App\Entity\Traits\ThumbnailTrait;
 use App\Entity\Traits\UpdateCreateByTrait;
 use App\Entity\Traits\UpdateCreateTrait;
 use DateTime;
@@ -20,6 +22,8 @@ use Symfony\Component\HttpFoundation\File\File;
 class Spoil
 {
     use UpdateCreateTrait;
+    use ThumbnailTrait;
+    use ImagesTrait;
     use SlugTrait;
 
     /**
@@ -28,16 +32,6 @@ class Spoil
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     */
-    private $createdBy;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $image;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -55,12 +49,6 @@ class Spoil
     private $spoilShares;
 
     /**
-     * @Vich\UploadableField(mapping="spoils_images", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -71,11 +59,6 @@ class Spoil
     private $goal_type;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Attachment::class, cascade={"persist"}, orphanRemoval=true)
-     */
-    private $images;
-
-    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", length=255, unique=true)
      */
@@ -83,55 +66,13 @@ class Spoil
 
     public function __construct()
     {
+        $this->initImages();
         $this->spoilShares = new ArrayCollection();
-        $this->images = new ArrayCollection();
-    }
-
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        // if ($image) {
-        // if 'updatedAt' is not defined in your entity, use another property
-        // $this->updatedAt = new \DateTime('now');
-        // }
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserCreatedBy(): ?User
-    {
-        return $this->createdBy;
-    }
-
-    public function setUserCreatedBy(?User $createdBy): self
-    {
-        $this->createdBy = $createdBy;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -221,32 +162,6 @@ class Spoil
     public function __toString()
     {
         return $this->getTitle();
-    }
-
-    /**
-     * @return Collection|Attachment[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Attachment $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Attachment $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-        }
-
-        return $this;
     }
 
 }

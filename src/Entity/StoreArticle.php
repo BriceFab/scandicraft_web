@@ -57,20 +57,10 @@ class StoreArticle
     private $createdBy;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Attachment::class, cascade={"persist"}, orphanRemoval=true)
-     */
-    private $attachments;
-
-    /**
      * @ORM\ManyToOne(targetEntity=StoreCategory::class, inversedBy="storeArticles")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
-
-    public function __construct()
-    {
-        $this->attachments = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -145,32 +135,6 @@ class StoreArticle
     public function setUserCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Attachment[]
-     */
-    public function getAttachments(): Collection
-    {
-        return $this->attachments;
-    }
-
-    public function addAttachment(Attachment $attachment): self
-    {
-        if (!$this->attachments->contains($attachment)) {
-            $this->attachments[] = $attachment;
-        }
-
-        return $this;
-    }
-
-    public function removeAttachment(Attachment $attachment): self
-    {
-        if ($this->attachments->contains($attachment)) {
-            $this->attachments->removeElement($attachment);
-        }
 
         return $this;
     }

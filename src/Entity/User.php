@@ -133,11 +133,6 @@ class User implements UserInterface
     private $voteSites;
 
     /**
-     * @ORM\OneToMany(targetEntity=Attachment::class, mappedBy="createdBy")
-     */
-    private $attachments;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $credit;
@@ -713,37 +708,6 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($voteSite->getUserCreatedBy() === $this) {
                 $voteSite->setUserCreatedBy(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Attachment[]
-     */
-    public function getAttachments(): Collection
-    {
-        return $this->attachments;
-    }
-
-    public function addAttachment(Attachment $attachment): self
-    {
-        if (!$this->attachments->contains($attachment)) {
-            $this->attachments[] = $attachment;
-            $attachment->setUserCreatedBy($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAttachment(Attachment $attachment): self
-    {
-        if ($this->attachments->contains($attachment)) {
-            $this->attachments->removeElement($attachment);
-            // set the owning side to null (unless already changed)
-            if ($attachment->getUserCreatedBy() === $this) {
-                $attachment->setUserCreatedBy(null);
             }
         }
 

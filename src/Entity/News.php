@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\ImagesTrait;
+use App\Entity\Traits\SlugTrait;
+use App\Entity\Traits\ThumbnailTrait;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\NewsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -15,6 +16,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class News
 {
     use UpdateCreateTrait;
+    use ThumbnailTrait;
+    use ImagesTrait;
+    use SlugTrait;
 
     /**
      * @ORM\Id
@@ -34,25 +38,14 @@ class News
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Images::class)
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $thumbnail;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Images::class, cascade={"persist"})
-     */
-    private $images;
-
-    /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $slug;
+    protected $slug;
 
     public function __construct()
     {
-        $this->images = new ArrayCollection();
+        $this->initImages();
     }
 
     public function getId(): ?int
@@ -80,63 +73,6 @@ class News
     public function setContent(?string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getThumbnail(): ?Images
-    {
-        $thumbnail = $this->thumbnail;
-
-        if (is_null($thumbnail)) {
-            $images = $this->getImages();
-            if ($images->count() > 0) {
-                $thumbnail = $images->get(0);
-            }
-        }
-
-        return $thumbnail;
-    }
-
-    public function setThumbnail(?Images $thumbnail): self
-    {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Images[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Images $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Images $image): self
-    {
-        $this->images->removeElement($image);
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }

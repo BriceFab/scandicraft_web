@@ -1,0 +1,40 @@
+{% embed "_components/listes/short/list.html.twig" %}
+
+    {% import "_components/listes/short/items.html.twig" as shortItems %}
+
+    {% block thumbnail %}
+        {% if item.thumbnail is not null %}
+            {% set thumbnail_img = vich_uploader_asset(item.thumbnail, 'file') | imagine_filter('thumbnail') %}
+            {{ shortItems.renderThumbnail(thumbnail_img, item.thumbnail.alt, item.thumbnail.title) }}
+        {% else %}
+            {{ shortItems.renderThumbnail() }}
+        {% endif %}
+    {% endblock %}
+
+    {% block item_title %}
+        {{ shortItems.renderTitle(item.title) }}
+    {% endblock %}
+
+    {% block render_item %}
+        {% set item_url = path('show_spoil', {'slug': item.slug}) %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block item_actions %}
+        <div class="card-footer d-flex">
+            <div class="d-flex align-items-center">
+                <small class="text-muted">
+                    <i class="fas fa-edit"></i>
+                    <span>{{ item.dateCreatedAt|date('d.m.Y') }}</span>
+                </small>
+            </div>
+            <div class="ml-auto">
+                <a href="{{ item_url }}"
+                   class="btn btn-primary">
+                    Consulter
+                </a>
+            </div>
+        </div>
+    {% endblock %}
+
+{% endembed %}
