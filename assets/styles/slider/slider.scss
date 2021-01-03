@@ -2,7 +2,28 @@
 @import "assets/styles/variables";
 
 .carousel {
-  background: $grayBlack;
+  background: white;
+
+  .slide-caption, .carousel-caption {
+    background-color: rgba($grayBlack, .6);
+    border-radius: 8px;
+    box-shadow: $mui_boxshadow_e2;
+  }
+
+  .carousel-cell {
+    /* full width */
+    width: 350px;
+    /* height of carousel */
+    min-height: 300px;
+    margin-right: 10px;
+  }
+
+  .carousel.is-fullscreen {
+    .carousel-caption {
+      background-color: rgba(white, .85);
+      color: black;
+    }
+  }
 }
 
 /* fade in image when loaded */
@@ -17,34 +38,32 @@
 }
 
 //HOME PAGE
+.carousel-home.carousel {
+  background: $grayBlack;
+}
+
+.carousel-home {
+  .home-carousel-cell {
+    /* full width */
+    width: 100%;
+    /* height of carousel */
+    max-height: 600px;
+    margin: 0;
+
+    img {
+      filter: blur(.3px);
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
 .carousel-home.is-fullscreen {
   .home-carousel-cell {
     height: 100%;
     display: flex;
     align-items: center;
     max-height: initial;
-  }
-}
-
-.home-carousel-cell {
-  /* full width */
-  width: 100%;
-  /* height of carousel */
-  max-height: 600px;
-  margin: 0;
-
-  img {
-    filter: blur(.3px);
-    display: block;
-    max-width: 101%;
-    height: auto;
-  }
-}
-
-.carousel-home {
-  .carousel-caption {
-    background-color: rgba($grayBlack, .6);
-    border-radius: 8px;
-    box-shadow: $mui_boxshadow_e2;
   }
 }

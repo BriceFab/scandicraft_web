@@ -20,7 +20,7 @@ class AccueilController extends AbstractController
     {
         return $this->render('pages/accueil/index.html.twig', [
             'home_slides' => $imagesRepository->findImagesByKey('home_slide_'),
-            'last_news' => $newsRepository->findLastNews(2),
+            'last_news' => $newsRepository->findLastNews(5),
         ]);
     }
 

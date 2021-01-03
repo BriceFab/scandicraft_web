@@ -7,6 +7,7 @@ use App\Repository\NewsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=NewsRepository::class)
@@ -23,16 +24,6 @@ class News
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Images::class)
-     */
-    private $images;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $thumbnail;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -42,6 +33,23 @@ class News
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Images::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Images::class)
+     */
+    private $images;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -50,6 +58,42 @@ class News
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?Images
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?Images $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
     }
 
     /**
@@ -76,38 +120,14 @@ class News
         return $this;
     }
 
-    public function getThumbnail(): ?string
+    public function getSlug(): ?string
     {
-        return $this->thumbnail;
+        return $this->slug;
     }
 
-    public function setThumbnail(?string $thumbnail): self
+    public function setSlug(string $slug): self
     {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): self
-    {
-        $this->content = $content;
+        $this->slug = $slug;
 
         return $this;
     }

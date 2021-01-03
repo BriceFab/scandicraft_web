@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="carousel carousel-home mb-3">
+    <div class="carousel carousel-home mb-5" data-options='{ "autoPlay": "800", "fullscreen": true }'>
         {% for home_slide in home_slides %}
             <div class="home-carousel-cell">
                 {% set slide_img = vich_uploader_asset(home_slide, 'file') | imagine_filter('slides') %}
@@ -35,25 +35,7 @@
         {% endfor %}
     </div>
 
-    {% if last_news|length > 0 %}
-        {# News #}
-        <div class="mb-3">
-            {% for news in last_news %}
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ news.title }}</h5>
-                        <p class="card-text">
-                            {{ news.content }}
-                        </p>
-                        <a href="#" class="btn btn-primary">
-                            Lire la suite
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {% include "_listes/short_news.html.twig" with {"news": last_news} %}
 
 {% endblock %}
 

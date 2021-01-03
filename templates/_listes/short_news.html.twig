@@ -1,0 +1,47 @@
+{% if news|length > 0 %}
+    <div class="container content-container my-5">
+        <div class="row">
+            <div class="col">
+                <h1>Dernières news</h1>
+                <div class="carousel"
+                     data-options='{ "pageDots": false, "contain": true, "freeScroll": true, "prevNextButtons": false }'>
+                    {# News #}
+                    {% for current_news in news %}
+                        <div class="carousel-cell">
+                            <div class="card">
+                                <a href="{{ path('show_news', {'slug': current_news.slug}) }}">
+                                    <div class="position-relative">
+                                        {% set thumbnail_img = vich_uploader_asset(current_news.thumbnail, 'file') | imagine_filter('thumbnail') %}
+                                        <img src="{{ thumbnail_img }}" class="card-img-top liip_thumbnail"
+                                             alt="{{ current_news.thumbnail.alt }}"
+                                             title="{{ current_news.thumbnail.title }}">
+                                        <div class="slide-caption position-absolute w-100 fixed-bottom p-2 border-raduis-0">
+                                            <h5 class="text-center text-white m-0">{{ current_news.title }}</h5>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <div class="card-footer d-flex">
+                                    <div class="d-flex align-items-center">
+                                        <small class="text-muted">
+                                            <i class="fas fa-edit"></i>
+                                            <span>
+                                                {{ current_news.dateCreatedAt|date('d.m.Y') }}
+                                            </span>
+                                        </small>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <a href="{{ path('show_news', {'slug': current_news.slug}) }}"
+                                           class="btn btn-primary">
+                                            Consulter
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

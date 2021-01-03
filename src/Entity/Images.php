@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\UpdateCreateByTrait;
 use App\Entity\Traits\UpdateCreateTrait;
 use App\Repository\ImagesRepository;
 use DateTime;
@@ -145,7 +144,7 @@ class Images
         $this->file = $file;
 
         if ($file) {
-            $this->setUpdatedAt(new DateTime('now'));
+            $this->setDateUpdatedAt(new DateTime('now'));
         }
     }
 
@@ -153,4 +152,10 @@ class Images
     {
         return $this->file;
     }
+
+    public function __toString()
+    {
+        return $this->getName() . " - " . $this->getTitle() . " #" . $this->getId();
+    }
+
 }
