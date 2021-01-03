@@ -1,4 +1,13 @@
+@import "~bootstrap/scss/mixins";
+
 .liip_thumbnail {
   width: 350px;
   height: 300px;
+}
+
+@include media-breakpoint-down(md) {
+  .liip_thumbnail {
+    width: 250px;
+    height: 200px;
+  }
 }

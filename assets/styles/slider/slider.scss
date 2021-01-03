@@ -1,5 +1,6 @@
 @import "assets/styles/colors";
 @import "assets/styles/variables";
+@import "~bootstrap/scss/mixins";
 
 .carousel {
   background: white;
@@ -7,14 +8,14 @@
   .slide-caption, .carousel-caption {
     background-color: rgba($grayBlack, .6);
     border-radius: 8px;
-    box-shadow: $mui_boxshadow_e2;
+    //box-shadow: $mui_boxshadow_e2;
   }
 
   .carousel-cell {
-    /* full width */
+    /* width of carousel */
     width: 350px;
     /* height of carousel */
-    min-height: 300px;
+    min-height: auto;
     margin-right: 10px;
   }
 
@@ -23,6 +24,14 @@
       background-color: rgba(white, .85);
       color: black;
     }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .carousel-cell {
+    width: 250px;
+    max-width: 250px;
+    margin-right: 5px;
   }
 }
 
