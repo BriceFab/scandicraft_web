@@ -1,0 +1,27 @@
+{% macro renderList(items, title = 'Liste') %}
+
+    {% if items|length > 0 %}
+        <div class="container content-container my-5">
+            <div class="row">
+                <div class="col">
+                    <h1>{{ title }}</h1>
+                    <div class="carousel"
+                         data-options='{ "pageDots": false, "contain": true, "freeScroll": true, "prevNextButtons": false }'>
+
+                        {# Carousel items #}
+                        {% for item in items %}
+
+                            {% block render_item %}
+                                {% import "_components/listes/short_item.html.twig" as list %}
+                                {{ list.renderItem('#') }}
+                            {% endblock %}
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endmacro %}

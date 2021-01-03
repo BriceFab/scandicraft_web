@@ -1,0 +1,12 @@
+{% macro renderThumbnail(image, alt, title) %}
+    <img src="{{ image }}"
+         class="card-img-top liip_thumbnail"
+         alt="{{ alt }}"
+         title="{{ title }}"/>
+{% endmacro %}
+
+{% macro renderTitle(title) %}
+    <div class="slide-caption position-absolute w-100 fixed-bottom p-2 border-raduis-0">
+        <h5 class="text-center text-white m-0">{{ title }}</h5>
+    </div>
+{% endmacro %}

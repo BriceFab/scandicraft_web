@@ -1,0 +1,47 @@
+{% block render_list %}
+
+    {% if items|length > 0 %}
+        <div class="container content-container my-5">
+            <div class="row">
+                <div class="col">
+                    <h1>{{ title }}</h1>
+                    <div class="carousel"
+                         data-options='{ "pageDots": false, "contain": true, "freeScroll": true, "prevNextButtons": false }'>
+
+                        {# Carousel items #}
+                        {% for item in items %}
+
+                            {% block render_item %}
+
+                                {% set item_url = item_url is defined and item_url is not null ? item_url : '#' %}
+
+                                <div class="carousel-cell">
+                                    <div class="card">
+
+                                        <a href="{{ item_url }}">
+                                            <div class="position-relative">
+                                                {# thumbnail #}
+                                                {% block thumbnail %}{% endblock %}
+
+                                                {# item_title #}
+                                                {% block item_title %}{% endblock %}
+                                            </div>
+                                        </a>
+
+                                        {# Actions #}
+                                        {% block item_actions %}{% endblock %}
+
+                                    </div>
+                                </div>
+
+                            {% endblock %}
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
