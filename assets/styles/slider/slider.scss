@@ -1,4 +1,5 @@
 @import "assets/styles/colors";
+@import "assets/styles/variables";
 
 .carousel {
   background: $grayBlack;
@@ -21,6 +22,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    max-height: initial;
   }
 }
 
@@ -28,7 +30,7 @@
   /* full width */
   width: 100%;
   /* height of carousel */
-  height: 600px;
+  max-height: 600px;
   margin: 0;
 
   img {
@@ -36,5 +38,13 @@
     display: block;
     max-width: 101%;
     height: auto;
+  }
+}
+
+.carousel-home {
+  .carousel-caption {
+    background-color: rgba($grayBlack, .6);
+    border-radius: 8px;
+    box-shadow: $mui_boxshadow_e2;
   }
 }
