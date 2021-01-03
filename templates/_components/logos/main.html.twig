@@ -1,4 +1,4 @@
-{% set logo_path = getParameter('param.site.logo') %}
+{% set logo_path = param_site_logo %}
 
 {% if logo_path is defined and logo_path is not null and logo_path != "null" %}
     <img src="{{ asset(path_upload_params ~ '/' ~ logo_path) }}" class="rounded mx-auto d-block main-logo" alt="Logo">

@@ -35,12 +35,12 @@ class News
 
     /**
      * @ORM\ManyToOne(targetEntity=Images::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $thumbnail;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Images::class)
+     * @ORM\ManyToMany(targetEntity=Images::class, cascade={"persist"})
      */
     private $images;
 
@@ -86,7 +86,16 @@ class News
 
     public function getThumbnail(): ?Images
     {
-        return $this->thumbnail;
+        $thumbnail = $this->thumbnail;
+
+        if (is_null($thumbnail)) {
+            $images = $this->getImages();
+            if ($images->count() > 0) {
+                $thumbnail = $images->get(0);
+            }
+        }
+
+        return $thumbnail;
     }
 
     public function setThumbnail(?Images $thumbnail): self

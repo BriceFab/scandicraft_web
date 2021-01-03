@@ -3,9 +3,12 @@
     {% import "_components/listes/short/items.html.twig" as shortItems %}
 
     {% block thumbnail %}
-        {% set thumbnail_img = vich_uploader_asset(item.thumbnail, 'file') | imagine_filter('thumbnail') %}
-
-        {{ shortItems.renderThumbnail(thumbnail_img, item.thumbnail.alt, item.thumbnail.title) }}
+        {% if item.thumbnail is not null %}
+            {% set thumbnail_img = vich_uploader_asset(item.thumbnail, 'file') | imagine_filter('thumbnail') %}
+            {{ shortItems.renderThumbnail(thumbnail_img, item.thumbnail.alt, item.thumbnail.title) }}
+        {% else %}
+            {{ shortItems.renderThumbnail() }}
+        {% endif %}
     {% endblock %}
 
     {% block item_title %}

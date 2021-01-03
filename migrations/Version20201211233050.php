@@ -21,6 +21,7 @@ final class Version20201211233050 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql("INSERT INTO `parameter` (`param_key`, `value`, `description`, `param_type`) VALUES ('param.site.logo', 'null', 'Logo du site', 'image');");
+        $this->addSql("INSERT INTO `parameter` (`param_key`, `value`, `description`, `param_type`) VALUES ('param.unknown.background', 'unknown.jpg', 'Image de remplacement', 'image');");
     }
 
     public function down(Schema $schema) : void

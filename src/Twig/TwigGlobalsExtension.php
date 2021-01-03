@@ -2,32 +2,47 @@
 
 namespace App\Twig;
 
+use App\Classes\EnumParamKey;
 use App\Entity\DevProgression;
-use App\Entity\Parameter;
 use App\Repository\DevProgressionRepository;
-use App\Repository\ParameterRepository;
+use App\Service\ParameterService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use Twig\Extension\GlobalsInterface;
 
-class TwigGlobalsExtension extends AbstractExtension
+class TwigGlobalsExtension extends AbstractExtension implements GlobalsInterface
 {
-    private $em;
-    private $parameterBag;
 
-    public function __construct(EntityManagerInterface $em, ParameterBagInterface $parameterBag)
+    private $parameterService;
+    private $em;
+
+    public function __construct(ParameterService $parameterService, EntityManagerInterface $em)
     {
+        $this->parameterService = $parameterService;
         $this->em = $em;
-        $this->parameterBag = $parameterBag;
     }
 
-    public function getFunctions()
+    public function getGlobals(): array
     {
-        return [
-            new TwigFunction('hasMaintenance', [$this, 'hasMaintenance']),
-            new TwigFunction('getParameter', [$this, 'getParameter']),
-        ];
+        $db_params = $this->getDatabaseParams();
+
+        return array_merge($db_params, [
+            'hasMaintenance' => $this->hasMaintenance(),
+        ]);
+    }
+
+    public function getDatabaseParams()
+    {
+        $db_params = [];
+
+        foreach (EnumParamKey::getList() as $param_key) {
+            $key = str_replace(".", "_", $param_key);
+            $value = $this->parameterService->getDatabaseParam($param_key);
+
+            $db_params[$key] = $value;
+        }
+
+        return $db_params;
     }
 
     public function hasMaintenance()
@@ -36,21 +51,6 @@ class TwigGlobalsExtension extends AbstractExtension
         $repo = $this->em->getRepository(DevProgression::class);
 
         return $repo->countMaintenances() > 0;
-    }
-
-    public function getParameter($key, $type = 'db')
-    {
-        if ($type != 'db') {
-            if ($this->parameterBag->has($key)) {
-                return $this->parameterBag->get($key);
-            }
-        } else {
-            /** @var ParameterRepository $paramRepo */
-            $paramRepo = $this->em->getRepository(Parameter::class);
-            return $paramRepo->findActiveParam($key);
-        }
-
-        return null;
     }
 
 }

@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    {% if hasMaintenance() == true %}
+    {% if hasMaintenance == true %}
         <p class="my-4">
             Certains de nos services sont en maintenance:
             <a href="{{ path('maintenances') }}" class="link_maintenances">voir plus de détails</a>.

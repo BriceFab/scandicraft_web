@@ -1,8 +1,8 @@
-{% macro renderThumbnail(image, alt, title) %}
-    <img src="{{ image }}"
+{% macro renderThumbnail(image = null, alt = null, title = null) %}
+    <img src="{{ image is not null ? image : asset(path_upload_params ~ '/' ~ param_unknown_background) }}"
          class="card-img-top liip_thumbnail"
-         alt="{{ alt }}"
-         title="{{ title }}"/>
+         alt="{{ alt is not null ? alt : param_site_name }}"
+         title="{{ title is not null ? title : param_site_name }}"/>
 {% endmacro %}
 
 {% macro renderTitle(title) %}

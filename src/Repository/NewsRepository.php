@@ -21,9 +21,9 @@ class NewsRepository extends ServiceEntityRepository
 
     /**
      * @param int $max
-     * @return News[] Returns an array of News objects
+     * @return int|mixed|string
      */
-    public function findLastNews(int $max = 0)
+    public function findLast(int $max = 0)
     {
         $qb = $this->createQueryBuilder('n')
             ->orderBy('n.dateCreatedAt', 'DESC');

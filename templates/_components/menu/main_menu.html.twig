@@ -7,11 +7,11 @@
 
         <!--  Only on mobile  -->
         <a class="navbar-brand d-lg-none"
-           href="{{ hasMaintenance() == true ? path('maintenances') : path('accueil') }}">
-            {{ getParameter('param.site.name') }}
+           href="{{ hasMaintenance == true ? path('maintenances') : path('accueil') }}">
+            {{ param_site_name }}
             -
             <span>
-                {% if hasMaintenance() == true %}
+                {% if hasMaintenance == true %}
                     En maintenance
                 {% else %}
                     <i class="fas fa-user"></i>

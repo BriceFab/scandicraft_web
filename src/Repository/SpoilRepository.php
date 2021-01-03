@@ -19,32 +19,19 @@ class SpoilRepository extends ServiceEntityRepository
         parent::__construct($registry, Spoil::class);
     }
 
-    // /**
-    //  * @return Spoil[] Returns an array of Spoil objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $max
+     * @return int|mixed|string
+     */
+    public function findLast(int $max = 0)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('s')
+            ->orderBy('s.dateCreatedAt', 'DESC');
 
-    /*
-    public function findOneBySomeField($value): ?Spoil
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($max > 0) {
+            $qb->setMaxResults($max);
+        }
+
+        return $qb->getQuery()->getResult();
     }
-    */
 }

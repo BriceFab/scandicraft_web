@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\UpdateCreateByTrait;
+use App\Entity\Traits\UpdateCreateTrait;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -16,7 +19,8 @@ use Symfony\Component\HttpFoundation\File\File;
  */
 class Spoil
 {
-    use UpdateCreateByTrait;
+    use UpdateCreateTrait;
+    use SlugTrait;
 
     /**
      * @ORM\Id()
@@ -70,6 +74,12 @@ class Spoil
      * @ORM\ManyToMany(targetEntity=Attachment::class, cascade={"persist"}, orphanRemoval=true)
      */
     private $images;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    protected $slug;
 
     public function __construct()
     {
@@ -238,4 +248,5 @@ class Spoil
 
         return $this;
     }
+
 }
