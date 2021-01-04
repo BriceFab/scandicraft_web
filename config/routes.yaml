@@ -4,3 +4,8 @@
 
 _liip_imagine:
   resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+
+file_manager:
+  resource: "@ArtgrisFileManagerBundle/Controller"
+  type:     annotation
+  prefix:   /admin/files_manager

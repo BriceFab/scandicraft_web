@@ -142,6 +142,11 @@ class DashboardController extends AbstractDashboardController
             // Images
             yield MenuItem::linkToCrud('Images', null, ImagesCrudController::getEntityFqcn());
 
+            // Images
+            yield MenuItem::linktoRoute('Files manager', null, 'file_manager', [
+                'conf' => 'all'
+            ]);
+
             // Réseaux
         }
 

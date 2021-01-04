@@ -47,3 +47,4 @@ security:
     - { path: ^/connexion$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: "^/%ADMIN_PATH%", roles: ROLE_PANEL_ADMIN }
     - { path: ^/profile, roles: ROLE_USER }
+    - { path: '^/admin/files_manager', roles: ROLE_ADMIN }

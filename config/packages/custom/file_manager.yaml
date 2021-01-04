@@ -1,0 +1,4 @@
+artgris_file_manager:
+    conf:
+        all:
+            dir: "../public/uploads"
